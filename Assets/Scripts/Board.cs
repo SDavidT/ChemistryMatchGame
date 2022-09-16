@@ -15,7 +15,7 @@ public class Board : MonoBehaviour
     // public int offSet;
     // public FindMatches findMatches;
     // public GameObject destroyEffect;
-    // public Dot currentDot;
+    public Dot currentDot;
 
 
     
@@ -39,7 +39,7 @@ public class Board : MonoBehaviour
                 backgroundTile.transform.parent=this.transform; // se asigna cada objeto al objeto padre
                 backgroundTile.name="( " + i + ", " + j + " )"; // se asigna el nombre a cada objeto
                 // 01 --
-                
+
                 // 02 llenar matriz creando puntos aleatorios 
                 int dotToUse = Random.Range(0,dots.Length);
                 GameObject dot = Instantiate(dots[dotToUse],tempPosition, Quaternion.identity);
