@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3990131791811145076}
   - component: {fileID: 6657095302074579146}
   - component: {fileID: 2266753014055891792}
+  - component: {fileID: -764183966609786994}
   m_Layer: 0
   m_Name: SO2
   m_TagString: Untagged
@@ -101,3 +102,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-764183966609786994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3865782298980299516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0555afa2267e3c14baf3b3875abcd94c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swipeAngle: 0
+  column: 0
+  row: 0
+  otherDot: {fileID: 0}
+  targetX: 0
+  targetY: 0
+  swipeResiste: 1
