@@ -2,21 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MoveTo{
-    right,
-    left,
-    up,
-    down,
-    empty
+
+// public enum MoveTo{
+//     right,
+//     left,
+//     up,
+//     down,
+//     empty
     
-}
+// }
 
 
 public class Dot : MonoBehaviour
 {
 
     [Header("variables")]
-    public MoveTo moveTo =MoveTo.empty;
+    //public MoveTo moveTo =MoveTo.empty;
     private Vector2 firstTouchPosition;
     private Vector2 finalTouchPosition;
     public float swipeAngle=0;
@@ -32,6 +33,7 @@ public class Dot : MonoBehaviour
     // public int previousRow;
     public float swipeResiste=1f;
     private FindMatches findMatches;
+    private bool movePiece=false;
     // public bool isColumnBomb;
     // public bool isRowBomb;
     // public GameObject rowArrow;
@@ -116,40 +118,24 @@ public class Dot : MonoBehaviour
             otherDot=board.allDots[column+1,row];
             otherDot.GetComponent<Dot>().column-=1;//desplazamiento del punto intercambiado - vecino
             column=column+1;//desplazamiento del punto seleccionado
-            moveTo=MoveTo.right;
-
-            // if(otherDot.tag==board.allDots[column-1,row].tag){
-
-            //     if(board.allDots[column-1,row].tag=="O" || board.allDots[column-1,row].tag=="H"){
-
-            //         otherDot.GetComponent<Dot>().isMatched=true;
-            //         board.allDots[column-1,row].GetComponent<Dot>().isMatched=true;
-            //     } 
-
-            // } else if(otherDot.tag=="O" && board.allDots[column-1,row].tag=="H2"){
-
-            //         otherDot.GetComponent<Dot>().isMatched=true;
-            //         board.allDots[column-1,row].GetComponent<Dot>().isMatched=true;
-            //     } 
-
+            movePiece=true;
             
         }else if(swipeAngle>45 && swipeAngle<=135 && row< board.height-1){ // ir para arriba
             otherDot=board.allDots[column,row+1];
             otherDot.GetComponent<Dot>().row-=1;
             row+=1;
-            moveTo=MoveTo.up;
+            movePiece=true;
 
         } else if ((swipeAngle>135 || swipeAngle<=-135)&&column>0){ // ir a la izquierda
             otherDot=board.allDots[column-1,row];
             otherDot.GetComponent<Dot>().column+=1;
             column-=1;
-            moveTo=MoveTo.left;
+            movePiece=true;
         }else if(swipeAngle<-45 && swipeAngle>=-135 && row>0){// ir para abajo
             otherDot=board.allDots[column,row-1];
             otherDot.GetComponent<Dot>().row+=1;
             row-=1;
-
-            moveTo=MoveTo.down;
+            movePiece=true;
         }
 
 
@@ -157,6 +143,7 @@ public class Dot : MonoBehaviour
     // 05 ---
 
 
+    // 06 Evaluar las combinaciones posibles de los componentes 
     public void EvaluateMatch()
     {
         StartCoroutine(EvaluateMatchCo());
@@ -170,38 +157,58 @@ public class Dot : MonoBehaviour
         
         if(board.currentDot!=null){
 
-            if(moveTo==MoveTo.right){
-                Debug.Log("Derecha");
-                    Debug.Log(board.currentDot.column);
-                    Debug.Log(board.currentDot.row);
-                    Debug.Log(board.currentDot.tag);
+            if(movePiece){
 
-            }else if(moveTo==MoveTo.up){
-                Debug.Log("Arriba");
-                    Debug.Log(board.currentDot.column);
-                    Debug.Log(board.currentDot.row);
-                    Debug.Log(board.currentDot.tag);
+                if(otherDot.tag==board.currentDot.tag){
 
-            }else if (moveTo==MoveTo.left){
-                Debug.Log("Izquierda");
-                    Debug.Log(board.currentDot.column);
-                    Debug.Log(board.currentDot.row);
-                    Debug.Log(board.currentDot.tag);
+                    if(board.currentDot.tag=="O"  ){
+
+                        Debug.Log("OO");
+                        //otherDot.GetComponent<Dot>().isMatched=true;
+                        //board.allDots[column-1,row].GetComponent<Dot>().isMatched=true;
+                    } else if (board.currentDot.tag=="H") {
+
+                        Debug.Log("HH");
+                    } 
                     
+                } else if ((board.currentDot.tag=="H2" && otherDot.tag=="O") ||(board.currentDot.tag=="O" && otherDot.tag=="H2") ){
 
-            }else if (moveTo==MoveTo.down){
-                Debug.Log("Abajo");
-                    Debug.Log(board.currentDot.column);
-                    Debug.Log(board.currentDot.row);
-                    Debug.Log(board.currentDot.tag);
+                    Debug.Log("H2O");
+
+                } else if (board.currentDot.tag=="S" && otherDot.tag=="O2"){
+                    
+                    Debug.Log("SO2");
+
+                } else if (board.currentDot.tag=="H2O" && otherDot.tag=="SO2"){
+
+                    Debug.Log("H2SO3");
+
+                } 
+
+                movePiece=false;
 
             }
+            //else if(moveTo==MoveTo.up){
+            //     Debug.Log("Arriba");
+            //         Debug.Log(board.currentDot.column);
+            //         Debug.Log(board.currentDot.row);
+            //         Debug.Log(board.currentDot.tag);
 
+            // }else if (moveTo==MoveTo.left){
+            //     Debug.Log("Izquierda");
+            //         Debug.Log(board.currentDot.column);
+            //         Debug.Log(board.currentDot.row);
+            //         Debug.Log(board.currentDot.tag);
+                    
 
-        }
-        
+            // }else if (moveTo==MoveTo.down){
+            //     Debug.Log("Abajo");
+            //         Debug.Log(board.currentDot.column);
+            //         Debug.Log(board.currentDot.row);
+            //         Debug.Log(board.currentDot.tag);
 
+            // }
+
+        }     
     }
-
-
 }
