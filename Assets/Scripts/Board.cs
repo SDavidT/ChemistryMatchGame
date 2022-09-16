@@ -17,6 +17,8 @@ public class Board : MonoBehaviour
     // public GameObject destroyEffect;
     public Dot currentDot;
 
+     public GameObject [] compuntDot;
+
 
     
     // Start is called before the first frame update
@@ -74,6 +76,51 @@ public class Board : MonoBehaviour
 
     }
 
+    // 07 eliminar y combinar elementos 
 
+    //Destruye el punto la bandera true
+    private void DestroyMatchesAt(int column, int row){
+        
+        if (allDots[column, row].GetComponent<Dot>().isMatched){
+
+            
+            //GameObject particle=Instantiate(destroyEffect,allDots[column,row].transform.position, Quaternion.identity); // efecto para destruir puntos
+            //Destroy(particle,.5f);
+            Destroy(allDots[column, row]);
+            allDots[column,row]= null;
+
+        }
+    }
+
+
+    // recorre la matriz completa y llama a la función de destrucción
+    public void DestroyMatches(){
+
+        for (int i=0; i<width; i++){
+
+            for (int j = 0; j<height; j++){
+                if (allDots[i,j]!= null){
+                    DestroyMatchesAt(i,j);
+                }
+            }
+        }
+
+        //StartCoroutine(DecreaseRowCo());
+    }
+
+    // 07 ---
+
+
+// 08 Busqueda del componente en la lista de gameobjects de los compuestos
+    public int SearchCompunt(string tag){
+
+        for (int i=0; i<compuntDot.Length; i++){
+
+            if(compuntDot[i].tag==tag){
+                return i;
+            }
+        }
+        return 100;
+    }
  
 }

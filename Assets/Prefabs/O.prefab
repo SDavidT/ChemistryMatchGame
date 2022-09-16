@@ -120,4 +120,6 @@ MonoBehaviour:
   otherDot: {fileID: 0}
   targetX: 0
   targetY: 0
+  isMatched: 0
   swipeResiste: 1
+  newDot: {fileID: 942680547190228378, guid: 632e1e17e6eacb8498529e3469ad2658, type: 3}

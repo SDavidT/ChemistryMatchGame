@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1646200299536454430}
   - component: {fileID: 1689029151639201878}
   - component: {fileID: -1969852641680373576}
+  - component: {fileID: 2301073608237235987}
   m_Layer: 0
   m_Name: H2
   m_TagString: H2
@@ -103,4 +104,21 @@ MonoBehaviour:
   otherDot: {fileID: 0}
   targetX: 0
   targetY: 0
+  isMatched: 0
   swipeResiste: 1
+--- !u!58 &2301073608237235987
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42949001586658235}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

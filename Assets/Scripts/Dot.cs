@@ -32,8 +32,10 @@ public class Dot : MonoBehaviour
     // public int previousColumn;
     // public int previousRow;
     public float swipeResiste=1f;
-    private FindMatches findMatches;
+    //private FindMatches findMatches;
     private bool movePiece=false;
+
+   
     // public bool isColumnBomb;
     // public bool isRowBomb;
     // public GameObject rowArrow;
@@ -163,31 +165,79 @@ public class Dot : MonoBehaviour
 
                     if(board.currentDot.tag=="O"  ){
 
+                        otherDot.GetComponent<Dot>().isMatched=true;
+                        board.currentDot.GetComponent<Dot>().isMatched=true;
                         Debug.Log("OO");
-                        //otherDot.GetComponent<Dot>().isMatched=true;
-                        //board.allDots[column-1,row].GetComponent<Dot>().isMatched=true;
+                        board.DestroyMatches();
+                        int numberDot = board.SearchCompunt("O2");
+                        Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
+
+
                     } else if (board.currentDot.tag=="H") {
 
+                        otherDot.GetComponent<Dot>().isMatched=true;
+                        board.currentDot.GetComponent<Dot>().isMatched=true;
+
                         Debug.Log("HH");
+                        board.DestroyMatches();
+                        int numberDot = board.SearchCompunt("H2");
+                        Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
                     } 
                     
                 } else if ((board.currentDot.tag=="H2" && otherDot.tag=="O") ||(board.currentDot.tag=="O" && otherDot.tag=="H2") ){
 
+                    otherDot.GetComponent<Dot>().isMatched=true;
+                    board.currentDot.GetComponent<Dot>().isMatched=true;
                     Debug.Log("H2O");
+                    board.DestroyMatches();
+                    int numberDot = board.SearchCompunt("H2O");
+                    Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
 
                 } else if (board.currentDot.tag=="S" && otherDot.tag=="O2"){
                     
+                    otherDot.GetComponent<Dot>().isMatched=true;
+                    board.currentDot.GetComponent<Dot>().isMatched=true;
                     Debug.Log("SO2");
+                    board.DestroyMatches();
+                    int numberDot = board.SearchCompunt("SO2");
+                    Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
 
                 } else if (board.currentDot.tag=="H2O" && otherDot.tag=="SO2"){
 
+                    otherDot.GetComponent<Dot>().isMatched=true;
+                    board.currentDot.GetComponent<Dot>().isMatched=true;
                     Debug.Log("H2SO3");
+                    board.DestroyMatches();
+                    int numberDot = board.SearchCompunt("H2SO3");
+                    Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
 
                 } 
 
                 movePiece=false;
 
             }
+
+
+            // private void RefillBoard()
+            // {
+            //     for (int i = 0; i < width; i++)
+            //     {
+
+            //         for (int j = 0; j < height; j++)
+            //         {
+
+            //             if (allDots[i, j] == null)
+            //             {
+            //                 Vector2 tempPosition = new Vector2(i, j + offSet);
+            //                 int dotToUse = Random.Range(0, dots.Length);
+            //                 GameObject piece = Instantiate(dots[dotToUse], tempPosition, Quaternion.identity);
+            //                 allDots[i, j] = piece;
+            //                 piece.GetComponent<Dot>().column = i;
+            //                 piece.GetComponent<Dot>().row = j;
+            //             }
+            //         }
+            //     }
+            // }
             //else if(moveTo==MoveTo.up){
             //     Debug.Log("Arriba");
             //         Debug.Log(board.currentDot.column);
