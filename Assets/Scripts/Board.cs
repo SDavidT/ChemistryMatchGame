@@ -12,7 +12,7 @@ public class Board : MonoBehaviour
     private BackgroundTile[,] allTiles;
     public GameObject[] dots;
     public GameObject[,] allDots;
-    // public int offSet;
+    public int offSet;
     // public FindMatches findMatches;
     // public GameObject destroyEffect;
     public Dot currentDot;
@@ -119,8 +119,7 @@ public class Board : MonoBehaviour
                 }
             }
         }
-
-        //StartCoroutine(DecreaseRowCo());
+        StartCoroutine(DecreaseRowCo());
     }
 
     // 07 ---
@@ -139,6 +138,35 @@ public class Board : MonoBehaviour
             }
         }
         return 100;
+    }
+
+    //09 Descenso de columnas
+
+    public IEnumerator DecreaseRowCo()
+    {
+        int nullCount = 0;
+        yield return new WaitForSeconds(.4f);
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                if (allDots[i, j] == null)
+                {
+                    nullCount++;
+                    // if (!(i == currentDot.column && j == currentDot.row))
+                    // {
+                    //     currentDot.GetComponent<Dot>().row -= nullCount;
+                    // }
+                }
+                else if (nullCount > 0)
+                {
+                    //nullCount -= 1;
+                    allDots[i, j].GetComponent<Dot>().row -= nullCount;
+                }
+            }
+            nullCount = 0;
+        }
+        yield return new WaitForSeconds(.4f);
     }
 
 }
