@@ -119,7 +119,6 @@ public class Board : MonoBehaviour
                 }
             }
         }
-        StartCoroutine(DecreaseRowCo());
     }
 
     // 07 ---
@@ -142,10 +141,14 @@ public class Board : MonoBehaviour
 
     //09 Descenso de columnas
 
+    public void DecreaseRow()
+    {
+        StartCoroutine(DecreaseRowCo());
+    }
+
     public IEnumerator DecreaseRowCo()
     {
         int nullCount = 0;
-        yield return new WaitForSeconds(.4f);
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
@@ -153,19 +156,46 @@ public class Board : MonoBehaviour
                 if (allDots[i, j] == null)
                 {
                     nullCount++;
-                    // if (!(i == currentDot.column && j == currentDot.row))
-                    // {
-                    //     currentDot.GetComponent<Dot>().row -= nullCount;
-                    // }
+                    if (i == currentDot.column && j == currentDot.row) //evitar que se llene el espacio del componente
+                    {
+                        nullCount -= 1;
+                    }
                 }
                 else if (nullCount > 0)
                 {
                     //nullCount -= 1;
                     allDots[i, j].GetComponent<Dot>().row -= nullCount;
+                    allDots[i, j] = null;
                 }
             }
             nullCount = 0;
         }
+        yield return new WaitForSeconds(.4f);
+        //RefillBoard();
+        StartCoroutine(RefillBoardCo());
+    }
+
+    private void RefillBoard()
+    {
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < height; j++)
+            {
+                //Debug.Log(allDots[i, j].tag);
+                if (allDots[i, j] == null)
+                {
+                    Vector2 tempPosition = new Vector2(i, j);
+                    int dotToUse = Random.Range(0, dots.Length);
+                    GameObject piece = Instantiate(dots[dotToUse], tempPosition, Quaternion.identity);
+                    allDots[i, j] = piece;
+                }
+            }
+        }
+    }
+
+    private IEnumerator RefillBoardCo()
+    {
+        RefillBoard();
         yield return new WaitForSeconds(.4f);
     }
 

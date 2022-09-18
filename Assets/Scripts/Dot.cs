@@ -168,6 +168,7 @@ public class Dot : MonoBehaviour
     {
         StartCoroutine(EvaluateMatchCo());
     }
+
     private IEnumerator EvaluateMatchCo()
     {
 
@@ -193,6 +194,7 @@ public class Dot : MonoBehaviour
                         board.DestroyMatches();
                         int numberDot = board.SearchCompunt("O2");
                         Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
+                        board.DecreaseRow();
 
 
                     }
@@ -206,6 +208,7 @@ public class Dot : MonoBehaviour
                         board.DestroyMatches();
                         int numberDot = board.SearchCompunt("H2");
                         Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
+                        board.DecreaseRow();
                     }
 
                 }
@@ -218,6 +221,7 @@ public class Dot : MonoBehaviour
                     board.DestroyMatches();
                     int numberDot = board.SearchCompunt("H2O");
                     Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
+                    board.DecreaseRow();
 
                 }
                 else if (board.currentDot.tag == "S" && otherDot.tag == "O2")
@@ -229,6 +233,7 @@ public class Dot : MonoBehaviour
                     board.DestroyMatches();
                     int numberDot = board.SearchCompunt("SO2");
                     Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
+                    board.DecreaseRow();
 
                 }
                 else if (board.currentDot.tag == "H2O" && otherDot.tag == "SO2")
@@ -240,6 +245,7 @@ public class Dot : MonoBehaviour
                     board.DestroyMatches();
                     int numberDot = board.SearchCompunt("H2SO3");
                     Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
+                    board.DecreaseRow();
 
                 }
 
