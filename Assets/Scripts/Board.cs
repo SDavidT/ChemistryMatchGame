@@ -146,7 +146,7 @@ public class Board : MonoBehaviour
     public IEnumerator DecreaseRowCo()
     {
         int nullCount = 0;
-        yield return new WaitForSeconds(.4f);
+        yield return new WaitForSeconds(.4f); // Tiempo para que aparezca la combinación de elemento 
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
