@@ -161,7 +161,6 @@ public class Board : MonoBehaviour
                 }
                 else if (nullCount > 0)
                 {
-                    //nullCount -= 1;
                     allDots[i, j].GetComponent<Dot>().row -= nullCount;
                     allDots[i, j] = null;
                 }
