@@ -323,6 +323,18 @@ public class Dot : MonoBehaviour
                 board.DecreaseRow();
                 powerDot = false;
             }
+            else if (board.currentDot.tag == "SO2")
+            {
+                DestroySquare((int)board.currentDot.transform.position.x, (int)board.currentDot.transform.position.y);
+                board.DecreaseRow();
+                powerDot = false;
+            }
+            else if (board.currentDot.tag == "H2SO3")
+            {
+                DestroyAll();
+                board.DecreaseRow();
+                powerDot = false;
+            }
         }
         yield return new WaitForSeconds(.3f);
     }
@@ -346,6 +358,56 @@ public class Dot : MonoBehaviour
             if (board.allDots[i, row] != null)
             {
                 board.allDots[i, row].GetComponent<Dot>().isMatched = true;
+            }
+        }
+        board.DestroyMatches();
+    }
+
+    public void DestroySquare(int column, int row)
+    {
+        if (column < 1)
+        {
+            if (row < 1)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (board.allDots[i, j] != null)
+                        {
+                            board.allDots[i, j].GetComponent<Dot>().isMatched = true;
+                        }
+                    }
+                }
+            }
+            else if (row == board.height - 1)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    for (int j = board.height - 1; j > board.height - 2; j--)
+                    {
+                        if (board.allDots[i, j] != null)
+                        {
+                            board.allDots[i, j].GetComponent<Dot>().isMatched = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        board.DestroyMatches();
+    }
+
+    public void DestroyAll()
+    {
+        for (int i = 0; i < board.width; i++)
+        {
+            for (int j = 0; j < board.height; j++)
+            {
+                if (board.allDots[i, row] != null)
+                {
+                    board.allDots[i, j].GetComponent<Dot>().isMatched = true;
+                }
             }
         }
         board.DestroyMatches();
