@@ -154,10 +154,10 @@ public class Board : MonoBehaviour
                 if (allDots[i, j] == null)
                 {
                     nullCount++;
-                    if (i == currentDot.column && j == currentDot.row) //evitar que se llene el espacio del componente
-                    {
-                        nullCount -= 1;
-                    }
+                    // if (i == currentDot.column && j == currentDot.row) //evitar que se llene el espacio del componente
+                    // {
+                    //     nullCount -= 1;
+                    // }
                 }
                 else if (nullCount > 0)
                 {
