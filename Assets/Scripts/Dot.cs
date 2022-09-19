@@ -385,7 +385,7 @@ public class Dot : MonoBehaviour
     {
         if (column < 1)
         {
-            if (row < 1)
+            if (row < 1) //Esquina inferor izquierda
             {
                 for (int i = 0; i < 2; i++)
                 {
@@ -398,11 +398,82 @@ public class Dot : MonoBehaviour
                     }
                 }
             }
-            else if (row == board.height - 1)
+            else if (row == board.height - 1) //Esquina superior izquierda
             {
                 for (int i = 0; i < 2; i++)
                 {
-                    for (int j = board.height - 1; j > board.height - 2; j--)
+                    for (int j = board.height - 1; j >= (board.height - 2); j--)
+                    {
+                        if (board.allDots[i, j] != null)
+                        {
+                            board.allDots[i, j].GetComponent<Dot>().isMatched = true;
+                        }
+                    }
+                }
+            }
+        }
+        else if (column == board.width - 1)
+        {
+            if (row < 1) //Esquina infero derecha
+            {
+                for (int i = board.width - 1; i >= board.width - 2; i--)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (board.allDots[i, j] != null)
+                        {
+                            board.allDots[i, j].GetComponent<Dot>().isMatched = true;
+                        }
+                    }
+                }
+            }
+            else if (row == board.height - 1) //Esquina superior derecha
+            {
+                for (int i = board.width - 1; i >= board.width - 2; i--)
+                {
+                    for (int j = board.height - 1; j >= board.height - 2; j--)
+                    {
+                        if (board.allDots[i, j] != null)
+                        {
+                            board.allDots[i, j].GetComponent<Dot>().isMatched = true;
+                        }
+                    }
+                }
+            }
+        }
+        else if (column >= 1 && column < board.width - 1)
+        {
+            if (row < 1) //Fila del borde inferior
+            {
+                for (int i = column - 1; i <= column + 1; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (board.allDots[i, j] != null)
+                        {
+                            board.allDots[i, j].GetComponent<Dot>().isMatched = true;
+                        }
+                    }
+                }
+            }
+            else if (row == board.height - 1) //Fila del borde superior
+            {
+                for (int i = column - 1; i <= column + 1; i++)
+                {
+                    for (int j = board.height - 1; j >= board.height - 2; j--)
+                    {
+                        if (board.allDots[i, j] != null)
+                        {
+                            board.allDots[i, j].GetComponent<Dot>().isMatched = true;
+                        }
+                    }
+                }
+            }
+            else
+            { // Filas y columnas alejadas de los bordes
+                for (int i = column - 1; i <= column + 1; i++)
+                {
+                    for (int j = row - 1; j <= row + 1; j++)
                     {
                         if (board.allDots[i, j] != null)
                         {
