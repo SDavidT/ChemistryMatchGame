@@ -88,11 +88,8 @@ public class Board : MonoBehaviour
     //Destruye el punto la bandera true
     private void DestroyMatchesAt(int column, int row)
     {
-
         if (allDots[column, row].GetComponent<Dot>().isMatched)
         {
-
-
             //GameObject particle=Instantiate(destroyEffect,allDots[column,row].transform.position, Quaternion.identity); // efecto para destruir puntos
             //Destroy(particle,.5f);
             Destroy(allDots[column, row]);
@@ -109,10 +106,8 @@ public class Board : MonoBehaviour
     // recorre la matriz completa y llama a la función de destrucción
     public void DestroyMatches()
     {
-
         for (int i = 0; i < width; i++)
         {
-
             for (int j = 0; j < height; j++)
             {
                 if (allDots[i, j] != null)

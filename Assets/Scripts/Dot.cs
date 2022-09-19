@@ -1,23 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 
-// public enum MoveTo{
-//     right,
-//     left,
-//     up,
-//     down,
-//     empty
-
-// }
+public enum MoveTo
+{
+    right,
+    left,
+    up,
+    down,
+    empty
+}
 
 
 public class Dot : MonoBehaviour
 {
 
     [Header("variables")]
-    //public MoveTo moveTo =MoveTo.empty;
+    public MoveTo moveTo = MoveTo.empty;
     public float swipeAngle = 0;
     public int column;
     public int row;
@@ -28,11 +29,13 @@ public class Dot : MonoBehaviour
     public float swipeResiste = 1f;
     public bool isMatched = false;
     private bool movePiece = false;
+    private bool powerDot = false;
     private Vector2 firstTouchPosition;
     private Vector2 finalTouchPosition;
     private Vector2 tempPosition;
     public GameObject otherDot;
     private Board board;
+    public List<GameObject> currentMatches = new List<GameObject>();
     //private FindMatches findMatches;
 
 
@@ -64,24 +67,19 @@ public class Dot : MonoBehaviour
         {
             tempPosition = new Vector2(targetX, transform.position.y);
             transform.position = Vector2.Lerp(transform.position, tempPosition, .4f);
-
             EvaluateMatch();
-
         }
         else
         {
             tempPosition = new Vector2(targetX, transform.position.y);
             transform.position = tempPosition;
             board.allDots[column, row] = this.gameObject;
-
         }
         if (Mathf.Abs(targetY - transform.position.y) > .1)
         {
             tempPosition = new Vector2(transform.position.x, targetY);
             transform.position = Vector2.Lerp(transform.position, tempPosition, .4f);
-
             EvaluateMatch();
-
         }
         else
         {
@@ -100,13 +98,11 @@ public class Dot : MonoBehaviour
 
     private void OnMouseDown()
     {
-
         firstTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
     private void OnMouseUp()
     {
-
         finalTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         CalculateAngle();
     }
@@ -118,6 +114,13 @@ public class Dot : MonoBehaviour
             swipeAngle = Mathf.Atan2(finalTouchPosition.y - firstTouchPosition.y, finalTouchPosition.x - firstTouchPosition.x) * 180 / Mathf.PI;
             MovePieces();
             board.currentDot = this;
+            powerDot = false;
+        }
+        else
+        {
+            powerDot = true;
+            board.currentDot = this;
+            PowersDots();
         }
     }
 
@@ -128,6 +131,7 @@ public class Dot : MonoBehaviour
     {
         if (swipeAngle > -45 && swipeAngle <= 45 && column < board.width - 1)
         { // ir a la derecha
+            moveTo = MoveTo.right;
             otherDot = board.allDots[column + 1, row];
             // previousRow = row;
             // previousColumn = column;
@@ -138,6 +142,7 @@ public class Dot : MonoBehaviour
         }
         else if (swipeAngle > 45 && swipeAngle <= 135 && row < board.height - 1)
         { // ir para arriba
+            moveTo = MoveTo.up;
             otherDot = board.allDots[column, row + 1];
             // previousRow = row;
             // previousColumn = column;
@@ -148,6 +153,7 @@ public class Dot : MonoBehaviour
         }
         else if ((swipeAngle > 135 || swipeAngle <= -135) && column > 0)
         { // ir a la izquierda
+            moveTo = MoveTo.left;
             otherDot = board.allDots[column - 1, row];
             // previousRow = row;
             // previousColumn = column;
@@ -157,6 +163,7 @@ public class Dot : MonoBehaviour
         }
         else if (swipeAngle < -45 && swipeAngle >= -135 && row > 0)
         {// ir para abajo
+            moveTo = MoveTo.down;
             otherDot = board.allDots[column, row - 1];
             // previousRow = row;
             // previousColumn = column;
@@ -164,7 +171,6 @@ public class Dot : MonoBehaviour
             row -= 1;
             movePiece = true;
         }
-
 
     }
     // 05 ---
@@ -211,7 +217,6 @@ public class Dot : MonoBehaviour
                 }
                 else if ((board.currentDot.tag == "H2" && otherDot.tag == "O") || (board.currentDot.tag == "O" && otherDot.tag == "H2"))
                 {
-
                     otherDot.GetComponent<Dot>().isMatched = true;
                     board.currentDot.GetComponent<Dot>().isMatched = true;
                     Debug.Log("H2O");
@@ -219,11 +224,9 @@ public class Dot : MonoBehaviour
                     int numberDot = board.SearchCompunt("H2O");
                     Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
                     board.DecreaseRow();
-
                 }
                 else if (board.currentDot.tag == "S" && otherDot.tag == "O2")
                 {
-
                     otherDot.GetComponent<Dot>().isMatched = true;
                     board.currentDot.GetComponent<Dot>().isMatched = true;
                     Debug.Log("SO2");
@@ -231,11 +234,9 @@ public class Dot : MonoBehaviour
                     int numberDot = board.SearchCompunt("SO2");
                     Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
                     board.DecreaseRow();
-
                 }
                 else if (board.currentDot.tag == "H2O" && otherDot.tag == "SO2")
                 {
-
                     otherDot.GetComponent<Dot>().isMatched = true;
                     board.currentDot.GetComponent<Dot>().isMatched = true;
                     Debug.Log("H2SO3");
@@ -245,11 +246,27 @@ public class Dot : MonoBehaviour
                     board.DecreaseRow();
 
                 }
-
+                // else if (board.currentDot.tag == "H2O")
+                // {
+                //         Debug.Log(board.currentDot.transform.position);
+                //         DestroyRow((int)board.currentDot.transform.position.y);
+                //         board.DecreaseRow();
+                //     // if (moveTo == MoveTo.left || moveTo == MoveTo.right)
+                //     // {
+                //     //     Debug.Log(board.currentDot.transform.position);
+                //     //     DestroyRow((int)board.currentDot.transform.position.y);
+                //     //     board.DecreaseRow();
+                //     // }
+                //     // else if (moveTo == MoveTo.up || moveTo == MoveTo.down)
+                //     // {
+                //     //     Debug.Log(board.currentDot.transform.position);
+                //     //     DestroyColum((int)board.currentDot.transform.position.x);
+                //     //     board.DecreaseRow();
+                //     // }
+                //     //currentMatches.Union(GetColumnPiece((int)transform.position.x));
+                // }
                 movePiece = false;
-
             }
-
 
             // private void RefillBoard()
             // {
@@ -273,25 +290,65 @@ public class Dot : MonoBehaviour
             // }
             //else if(moveTo==MoveTo.up){
             //     Debug.Log("Arriba");
-            //         Debug.Log(board.currentDot.column);
-            //         Debug.Log(board.currentDot.row);
-            //         Debug.Log(board.currentDot.tag);
-
             // }else if (moveTo==MoveTo.left){
             //     Debug.Log("Izquierda");
-            //         Debug.Log(board.currentDot.column);
-            //         Debug.Log(board.currentDot.row);
-            //         Debug.Log(board.currentDot.tag);
-
-
             // }else if (moveTo==MoveTo.down){
             //     Debug.Log("Abajo");
-            //         Debug.Log(board.currentDot.column);
-            //         Debug.Log(board.currentDot.row);
-            //         Debug.Log(board.currentDot.tag);
-
             // }
 
         }
     }
+
+
+    // 07 Revisión de poderes
+    public void PowersDots()
+    {
+        StartCoroutine(PowersDotsCo());
+    }
+
+
+    public IEnumerator PowersDotsCo()
+    {
+        if (powerDot)
+        {
+            if (board.currentDot.tag == "O2")
+            {
+                DestroyRow((int)board.currentDot.transform.position.y);
+                board.DecreaseRow();
+                powerDot = false;
+            }
+            else if (board.currentDot.tag == "H2O")
+            {
+                DestroyColum((int)board.currentDot.transform.position.x);
+                board.DecreaseRow();
+                powerDot = false;
+            }
+        }
+        yield return new WaitForSeconds(.3f);
+    }
+
+    public void DestroyColum(int column)
+    {
+        for (int i = 0; i < board.height; i++)
+        {
+            if (board.allDots[column, i] != null)
+            {
+                board.allDots[column, i].GetComponent<Dot>().isMatched = true;
+            }
+        }
+        board.DestroyMatches();
+    }
+
+    public void DestroyRow(int row)
+    {
+        for (int i = 0; i < board.width; i++)
+        {
+            if (board.allDots[i, row] != null)
+            {
+                board.allDots[i, row].GetComponent<Dot>().isMatched = true;
+            }
+        }
+        board.DestroyMatches();
+    }
+
 }
