@@ -357,6 +357,7 @@ public class Dot : MonoBehaviour
         yield return new WaitForSeconds(.3f);
     }
 
+    // Destrucción según su poder
     public void DestroyColum(int column)
     {
         for (int i = 0; i < board.height; i++)

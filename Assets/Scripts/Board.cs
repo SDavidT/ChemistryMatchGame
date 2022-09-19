@@ -146,6 +146,7 @@ public class Board : MonoBehaviour
     public IEnumerator DecreaseRowCo()
     {
         int nullCount = 0;
+        yield return new WaitForSeconds(.4f);
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
@@ -199,6 +200,6 @@ public class Board : MonoBehaviour
     }
 
 
-    
+
 
 }
