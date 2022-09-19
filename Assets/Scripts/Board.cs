@@ -50,6 +50,8 @@ public class Board : MonoBehaviour
                 // 02 llenar matriz creando puntos aleatorios 
                 int dotToUse = Random.Range(0, dots.Length);
                 GameObject dot = Instantiate(dots[dotToUse], tempPosition, Quaternion.identity);
+                // dot.GetComponent<Dot>().column = i;
+                // dot.GetComponent<Dot>().row = j;
                 dot.transform.parent = this.transform;
                 dot.name = "( " + i + ", " + j + " )";
                 //02--
@@ -67,9 +69,9 @@ public class Board : MonoBehaviour
                 //     maxIterations++;
                 // }
                 // maxIterations=0;
-                // GameObject dot = Instantiate(dots[dotToUse],tempPosition, Quaternion.identity);
-                // dot.GetComponent<Dot>().column=i;
-                // dot.GetComponent<Dot>().row=j;
+                //GameObject dot = Instantiate(dots[dotToUse],tempPosition, Quaternion.identity);
+                // dot.GetComponent<Dot>().column = i;
+                // dot.GetComponent<Dot>().row = j;
                 // dot.transform.parent= this.transform;
                 // dot.name= "( " + i + ", " + j + " )";
                 // allDots[i,j]=dot;
@@ -175,19 +177,21 @@ public class Board : MonoBehaviour
         StartCoroutine(RefillBoardCo());
     }
 
+    //10 Rellenar el tablero
     private void RefillBoard()
     {
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
             {
-                //Debug.Log(allDots[i, j].tag);
                 if (allDots[i, j] == null)
                 {
                     Vector2 tempPosition = new Vector2(i, j);
                     int dotToUse = Random.Range(0, dots.Length);
                     GameObject piece = Instantiate(dots[dotToUse], tempPosition, Quaternion.identity);
                     allDots[i, j] = piece;
+                    // piece.GetComponent<Dot>().column = i;
+                    // piece.GetComponent<Dot>().row = j;
                 }
             }
         }

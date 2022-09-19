@@ -18,22 +18,22 @@ public class Dot : MonoBehaviour
 
     [Header("variables")]
     //public MoveTo moveTo =MoveTo.empty;
-    private Vector2 firstTouchPosition;
-    private Vector2 finalTouchPosition;
     public float swipeAngle = 0;
     public int column;
     public int row;
-    public GameObject otherDot;
-    private Board board;
     public int targetX;
     public int targetY;
-    private Vector2 tempPosition;
-    public bool isMatched = false;
-    // public int previousColumn;
-    // public int previousRow;
+    public int previousColumn;
+    public int previousRow;
     public float swipeResiste = 1f;
-    //private FindMatches findMatches;
+    public bool isMatched = false;
     private bool movePiece = false;
+    private Vector2 firstTouchPosition;
+    private Vector2 finalTouchPosition;
+    private Vector2 tempPosition;
+    public GameObject otherDot;
+    private Board board;
+    //private FindMatches findMatches;
 
 
     // public bool isColumnBomb;
@@ -66,7 +66,6 @@ public class Dot : MonoBehaviour
             transform.position = Vector2.Lerp(transform.position, tempPosition, .4f);
 
             EvaluateMatch();
-
 
         }
         else
@@ -130,6 +129,8 @@ public class Dot : MonoBehaviour
         if (swipeAngle > -45 && swipeAngle <= 45 && column < board.width - 1)
         { // ir a la derecha
             otherDot = board.allDots[column + 1, row];
+            // previousRow = row;
+            // previousColumn = column;
             otherDot.GetComponent<Dot>().column -= 1;//desplazamiento del punto intercambiado - vecino
             column = column + 1;//desplazamiento del punto seleccionado
             movePiece = true;
@@ -138,6 +139,8 @@ public class Dot : MonoBehaviour
         else if (swipeAngle > 45 && swipeAngle <= 135 && row < board.height - 1)
         { // ir para arriba
             otherDot = board.allDots[column, row + 1];
+            // previousRow = row;
+            // previousColumn = column;
             otherDot.GetComponent<Dot>().row -= 1;
             row += 1;
             movePiece = true;
@@ -146,6 +149,8 @@ public class Dot : MonoBehaviour
         else if ((swipeAngle > 135 || swipeAngle <= -135) && column > 0)
         { // ir a la izquierda
             otherDot = board.allDots[column - 1, row];
+            // previousRow = row;
+            // previousColumn = column;
             otherDot.GetComponent<Dot>().column += 1;
             column -= 1;
             movePiece = true;
@@ -153,6 +158,8 @@ public class Dot : MonoBehaviour
         else if (swipeAngle < -45 && swipeAngle >= -135 && row > 0)
         {// ir para abajo
             otherDot = board.allDots[column, row - 1];
+            // previousRow = row;
+            // previousColumn = column;
             otherDot.GetComponent<Dot>().row += 1;
             row -= 1;
             movePiece = true;
@@ -171,23 +178,16 @@ public class Dot : MonoBehaviour
 
     private IEnumerator EvaluateMatchCo()
     {
-
-
         yield return new WaitForSeconds(.3f);
-
 
         if (board.currentDot != null)
         {
-
             if (movePiece)
             {
-
                 if (otherDot.tag == board.currentDot.tag)
                 {
-
                     if (board.currentDot.tag == "O")
                     {
-
                         otherDot.GetComponent<Dot>().isMatched = true;
                         board.currentDot.GetComponent<Dot>().isMatched = true;
                         Debug.Log("OO");
@@ -195,12 +195,9 @@ public class Dot : MonoBehaviour
                         int numberDot = board.SearchCompunt("O2");
                         Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
                         board.DecreaseRow();
-
-
                     }
                     else if (board.currentDot.tag == "H")
                     {
-
                         otherDot.GetComponent<Dot>().isMatched = true;
                         board.currentDot.GetComponent<Dot>().isMatched = true;
 
