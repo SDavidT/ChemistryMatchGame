@@ -40,6 +40,7 @@ public class Dot : MonoBehaviour
 
     [SerializeField] private float inputScore;
     private ScoreManager score;
+    
 
 
     //private FindMatches findMatches;

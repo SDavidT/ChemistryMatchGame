@@ -19,6 +19,7 @@ public class Board : MonoBehaviour
 
     public GameObject[] compuntDot;
     private SoundManager soundManager;
+    public int [] scoreGoals;
 
 
 
