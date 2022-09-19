@@ -101,11 +101,14 @@ MonoBehaviour:
   swipeAngle: 0
   column: 0
   row: 0
-  otherDot: {fileID: 0}
   targetX: 0
   targetY: 0
-  isMatched: 0
+  previousColumn: 0
+  previousRow: 0
   swipeResiste: 1
+  isMatched: 0
+  otherDot: {fileID: 0}
+  inputScore: 100
 --- !u!58 &2301073608237235987
 CircleCollider2D:
   m_ObjectHideFlags: 0
