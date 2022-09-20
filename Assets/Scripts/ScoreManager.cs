@@ -37,8 +37,8 @@ public class ScoreManager : MonoBehaviour
 
         int Length = board.scoreGoals.Length;
 
-        Debug.Log(score);
-        Debug.Log(Length);
+        //Debug.Log(score);
+        //Debug.Log(Length);
         //scoreBar.fillAmount = (float)0.59;
         // Debug.Log(scoreBar.fillAmount);
 
