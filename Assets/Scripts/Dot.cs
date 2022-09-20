@@ -414,6 +414,19 @@ public class Dot : MonoBehaviour
                     }
                 }
             }
+            else if (row >= 1 && row < board.height - 1)//Borde de columna izquierdo
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    for (int j = row - 1; j <= row + 1; j++)
+                    {
+                        if (board.allDots[i, j] != null)
+                        {
+                            board.allDots[i, j].GetComponent<Dot>().isMatched = true;
+                        }
+                    }
+                }
+            }
         }
         else if (column == board.width - 1)
         {
@@ -435,6 +448,19 @@ public class Dot : MonoBehaviour
                 for (int i = board.width - 1; i >= board.width - 2; i--)
                 {
                     for (int j = board.height - 1; j >= board.height - 2; j--)
+                    {
+                        if (board.allDots[i, j] != null)
+                        {
+                            board.allDots[i, j].GetComponent<Dot>().isMatched = true;
+                        }
+                    }
+                }
+            }
+            else if (row >= 1 && row < board.height - 1)//Borde de columna derecho
+            {
+                for (int i = board.width - 1; i >= board.width - 2; i--)
+                {
+                    for (int j = row - 1; j <= row + 1; j++)
                     {
                         if (board.allDots[i, j] != null)
                         {
