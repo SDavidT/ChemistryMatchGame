@@ -110,7 +110,7 @@ MonoBehaviour:
   isMatched: 0
   otherDot: {fileID: 0}
   currentMatches: []
-  inputScore: 0
+  inputScore: 100
 --- !u!61 &850140612771225921
 BoxCollider2D:
   m_ObjectHideFlags: 0
