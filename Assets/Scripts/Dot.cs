@@ -143,9 +143,11 @@ public class Dot : MonoBehaviour
             otherDot = board.allDots[column + 1, row];
             // previousRow = row;
             // previousColumn = column;
-            otherDot.GetComponent<Dot>().column -= 1;//desplazamiento del punto intercambiado - vecino
-            column = column + 1;//desplazamiento del punto seleccionado
-            movePiece = true;
+            if(otherDot!=null){
+                otherDot.GetComponent<Dot>().column -= 2;//desplazamiento del punto intercambiado - vecino
+                column = column + 1;//desplazamiento del punto seleccionado
+                movePiece = true;
+            }
 
         }
         else if (swipeAngle > 45 && swipeAngle <= 135 && row < board.height - 1)
@@ -154,9 +156,12 @@ public class Dot : MonoBehaviour
             otherDot = board.allDots[column, row + 1];
             // previousRow = row;
             // previousColumn = column;
-            otherDot.GetComponent<Dot>().row -= 1;
-            row += 1;
-            movePiece = true;
+            if(otherDot!=null){
+
+                otherDot.GetComponent<Dot>().row -= 1;
+                row += 1;
+                movePiece = true;
+            }
 
         }
         else if ((swipeAngle > 135 || swipeAngle <= -135) && column > 0)
@@ -165,9 +170,12 @@ public class Dot : MonoBehaviour
             otherDot = board.allDots[column - 1, row];
             // previousRow = row;
             // previousColumn = column;
-            otherDot.GetComponent<Dot>().column += 1;
-            column -= 1;
-            movePiece = true;
+
+            if(otherDot!=null){
+                otherDot.GetComponent<Dot>().column += 1;
+                column -= 1;
+                movePiece = true;
+            }
         }
         else if (swipeAngle < -45 && swipeAngle >= -135 && row > 0)
         {// ir para abajo
@@ -175,9 +183,12 @@ public class Dot : MonoBehaviour
             otherDot = board.allDots[column, row - 1];
             // previousRow = row;
             // previousColumn = column;
-            otherDot.GetComponent<Dot>().row += 1;
-            row -= 1;
-            movePiece = true;
+            if(otherDot!=null){
+
+                otherDot.GetComponent<Dot>().row += 1;
+                row -= 1;
+                movePiece = true;
+            }
         }
 
     }
@@ -198,6 +209,7 @@ public class Dot : MonoBehaviour
         {
             if (movePiece)
             {
+            
                 if (otherDot.tag == board.currentDot.tag)
                 {
                     if (board.currentDot.tag == "O")

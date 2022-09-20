@@ -2,80 +2,111 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum TileKind{
+    Breakble,
+    Blank,
+    Normal
+}
+
+[System.Serializable]
+public class TileType{
+    public int x;
+    public int y;
+    public TileKind tilekind;
+}
+
 public class Board : MonoBehaviour
 {
-
-
+    public World world;
     public int width;
     public int height;
     public GameObject tilePrefab;
-    private BackgroundTile[,] allTiles;
+    //private BackgroundTile[,] allTiles;
+    private bool[,] blankSpaces;
     public GameObject[] dots;
     public GameObject[,] allDots;
     public int offSet;
     // public FindMatches findMatches;
     // public GameObject destroyEffect;
     public Dot currentDot;
-
     public GameObject[] compuntDot;
     private SoundManager soundManager;
     public int [] scoreGoals;
     private GoalManager goalManager;
+    public TileType[] boardLayout;
     
     // Start is called before the first frame update
     void Start()
     {
         goalManager=FindObjectOfType<GoalManager>();
         soundManager = FindObjectOfType<SoundManager>();
-        allTiles = new BackgroundTile[width, height];
+        //allTiles = new BackgroundTile[width, height];
+        blankSpaces = new bool[width,height];
         allDots = new GameObject[width, height];
         SetUp();
+    }
+
+    public void GenerateBlankSpaces(){
+        for (int i=0; i<boardLayout.Length; i++){
+
+            if(boardLayout[i].tilekind==TileKind.Blank){
+
+                blankSpaces[boardLayout[i].x,boardLayout[i].y]=true;
+                //Debug.Log(boardLayout[i].x);
+
+            }
+        }
     }
 
 
     private void SetUp()
     {
+        GenerateBlankSpaces();
 
         for (int i = 0; i < width; i++)
         {
 
             for (int j = 0; j < height; j++)
             {
-                // 01 creacion de mosaicos o matriz 
-                Vector2 tempPosition = new Vector2(i, j);// representacion de vectores y posicion 2d con ejes X y Y
-                GameObject backgroundTile = Instantiate(tilePrefab, tempPosition, Quaternion.identity) as GameObject; // clona objetos moviendo la posicion y con rotacion 0
-                backgroundTile.transform.parent = this.transform; // se asigna cada objeto al objeto padre
-                backgroundTile.name = "( " + i + ", " + j + " )"; // se asigna el nombre a cada objeto
-                // 01 --
+                if(!blankSpaces[i,j]){
 
-                // 02 llenar matriz creando puntos aleatorios 
-                int dotToUse = Random.Range(0, dots.Length);
-                GameObject dot = Instantiate(dots[dotToUse], tempPosition, Quaternion.identity);
-                // dot.GetComponent<Dot>().column = i;
-                // dot.GetComponent<Dot>().row = j;
-                dot.transform.parent = this.transform;
-                dot.name = "( " + i + ", " + j + " )";
-                //02--
+                    // 01 creacion de mosaicos o matriz 
+                    Vector2 tempPosition = new Vector2(i, j);// representacion de vectores y posicion 2d con ejes X y Y
+                    GameObject backgroundTile = Instantiate(tilePrefab, tempPosition, Quaternion.identity) as GameObject; // clona objetos moviendo la posicion y con rotacion 0
+                    backgroundTile.transform.parent = this.transform; // se asigna cada objeto al objeto padre
+                    backgroundTile.name = "( " + i + ", " + j + " )"; // se asigna el nombre a cada objeto
+                    // 01 --
 
-                //03 Genero y alamaceno una matriz de GameObjects de puntos 
-                allDots[i, j] = dot;
-                //03--
+                    // 02 llenar matriz creando puntos aleatorios 
+                    int dotToUse = Random.Range(0, dots.Length);
+                    GameObject dot = Instantiate(dots[dotToUse], tempPosition, Quaternion.identity);
+                    // dot.GetComponent<Dot>().column = i;
+                    // dot.GetComponent<Dot>().row = j;
+                    dot.transform.parent = this.transform;
+                    dot.name = "( " + i + ", " + j + " )";
+                    //02--
+
+                    //03 Genero y alamaceno una matriz de GameObjects de puntos 
+                    allDots[i, j] = dot;
+                    //03--
 
 
-                //int maxIterations=0;
+                    //int maxIterations=0;
 
-                // // bucle para evitar que se repitan puntos al inciar el juego 
-                // while(MatchesAt(i,j,dots[dotToUse])&& maxIterations<100){
-                //     dotToUse=Random.Range(0,dots.Length);
-                //     maxIterations++;
-                // }
-                // maxIterations=0;
-                //GameObject dot = Instantiate(dots[dotToUse],tempPosition, Quaternion.identity);
-                // dot.GetComponent<Dot>().column = i;
-                // dot.GetComponent<Dot>().row = j;
-                // dot.transform.parent= this.transform;
-                // dot.name= "( " + i + ", " + j + " )";
-                // allDots[i,j]=dot;
+                    // // bucle para evitar que se repitan puntos al inciar el juego 
+                    // while(MatchesAt(i,j,dots[dotToUse])&& maxIterations<100){
+                    //     dotToUse=Random.Range(0,dots.Length);
+                    //     maxIterations++;
+                    // }
+                    // maxIterations=0;
+                    //GameObject dot = Instantiate(dots[dotToUse],tempPosition, Quaternion.identity);
+                    // dot.GetComponent<Dot>().column = i;
+                    // dot.GetComponent<Dot>().row = j;
+                    // dot.transform.parent= this.transform;
+                    // dot.name= "( " + i + ", " + j + " )";
+                    // allDots[i,j]=dot;
+                }
 
 
             }
@@ -98,7 +129,7 @@ public class Board : MonoBehaviour
                 goalManager.CompareGoal(allDots[column,row].tag.ToString());
                 goalManager.UpdateGoals();
             }
-            
+
             Destroy(allDots[column, row]);
             allDots[column, row] = null;
 
