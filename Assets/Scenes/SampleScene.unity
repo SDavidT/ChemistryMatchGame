@@ -1055,7 +1055,7 @@ MonoBehaviour:
   - {fileID: 3393100504421450053, guid: 6f65c11068ba4a74291a76d61fe86d56, type: 3}
   - {fileID: 6840285220376148554, guid: 8e43e364f752d2443b9f42b6ba075ca3, type: 3}
   - {fileID: 1210127744142938614, guid: 77dc4ca31ea299a4ba2a3781f015d8df, type: 3}
-  scoreGoals: 64000000c800000090010000
+  scoreGoals: 6400000084030000d0070000
 --- !u!4 &873707205
 Transform:
   m_ObjectHideFlags: 0
@@ -1446,10 +1446,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a03ced0c54a4d5a488ee2e78b9c0a9ad, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

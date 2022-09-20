@@ -38,9 +38,10 @@ public class Dot : MonoBehaviour
 
     public List<GameObject> currentMatches = new List<GameObject>();
 
-    [SerializeField] private float inputScore;
+    //[SerializeField] private float inputScore;
+    public float inputScore;
     private ScoreManager score;
-    
+
 
 
     //private FindMatches findMatches;
@@ -209,7 +210,7 @@ public class Dot : MonoBehaviour
                         int numberDot = board.SearchCompunt("O2");
                         Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
                         board.DecreaseRow();
-                        score.AddScore(inputScore);
+                        //score.AddScore(inputScore);
                     }
                     else if (board.currentDot.tag == "H")
                     {
@@ -221,7 +222,7 @@ public class Dot : MonoBehaviour
                         int numberDot = board.SearchCompunt("H2");
                         Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
                         board.DecreaseRow();
-                        score.AddScore(inputScore);
+                        //score.AddScore(inputScore);
                     }
 
                 }
@@ -234,9 +235,7 @@ public class Dot : MonoBehaviour
                     int numberDot = board.SearchCompunt("H2O");
                     Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
                     board.DecreaseRow();
-
-                    score.AddScore(inputScore);
-
+                    //score.AddScore(inputScore);
 
                 }
                 else if (board.currentDot.tag == "S" && otherDot.tag == "O2")
@@ -248,9 +247,7 @@ public class Dot : MonoBehaviour
                     int numberDot = board.SearchCompunt("SO2");
                     Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
                     board.DecreaseRow();
-
-                    score.AddScore(inputScore);
-
+                    //score.AddScore(inputScore);
 
                 }
                 else if (board.currentDot.tag == "H2O" && otherDot.tag == "SO2")
@@ -262,7 +259,7 @@ public class Dot : MonoBehaviour
                     int numberDot = board.SearchCompunt("H2SO3");
                     Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
                     board.DecreaseRow();
-                    score.AddScore(inputScore);
+                    //score.AddScore(inputScore);
 
                 }
                 // else if (board.currentDot.tag == "H2O")

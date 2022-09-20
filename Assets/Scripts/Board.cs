@@ -19,13 +19,15 @@ public class Board : MonoBehaviour
 
     public GameObject[] compuntDot;
     private SoundManager soundManager;
-    public int [] scoreGoals;
+    public int[] scoreGoals;
     private GoalManager goalManager;
-    
+    private ScoreManager score;
+
     // Start is called before the first frame update
     void Start()
     {
-        goalManager=FindObjectOfType<GoalManager>();
+        goalManager = FindObjectOfType<GoalManager>();
+        score = FindObjectOfType<ScoreManager>();
         soundManager = FindObjectOfType<SoundManager>();
         allTiles = new BackgroundTile[width, height];
         allDots = new GameObject[width, height];
@@ -94,17 +96,21 @@ public class Board : MonoBehaviour
             //GameObject particle=Instantiate(destroyEffect,allDots[column,row].transform.position, Quaternion.identity); // efecto para destruir puntos
             //Destroy(particle,.5f);
             //
-            if(goalManager!=null){
-                goalManager.CompareGoal(allDots[column,row].tag.ToString());
+            if (goalManager != null) //Actualiza los objetivos en el tablero superior
+            {
+                goalManager.CompareGoal(allDots[column, row].tag.ToString());
                 goalManager.UpdateGoals();
             }
-            
+
+            if (score != null) //Suma de puntajes según el componente
+            {
+                score.AddScore(allDots[column, row].GetComponent<Dot>().inputScore);
+            }
             Destroy(allDots[column, row]);
             allDots[column, row] = null;
 
-
-            if (soundManager != null)
-            { //Activar el sonido
+            if (soundManager != null)//Activar el sonido
+            {
                 soundManager.PlayRandomDestroyNoice();
             }
         }
