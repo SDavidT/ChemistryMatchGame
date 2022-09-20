@@ -44,7 +44,7 @@ public class Board : MonoBehaviour
             for (int j = 0; j < height; j++)
             {
                 // 01 creacion de mosaicos o matriz 
-                Vector2 tempPosition = new Vector2(i, j);// representacion de vectores y posicion 2d con ejes X y Y
+                Vector2 tempPosition = new Vector2(i, j + offSet);// representacion de vectores y posicion 2d con ejes X y Y
                 GameObject backgroundTile = Instantiate(tilePrefab, tempPosition, Quaternion.identity) as GameObject; // clona objetos moviendo la posicion y con rotacion 0
                 backgroundTile.transform.parent = this.transform; // se asigna cada objeto al objeto padre
                 backgroundTile.name = "( " + i + ", " + j + " )"; // se asigna el nombre a cada objeto
@@ -53,8 +53,8 @@ public class Board : MonoBehaviour
                 // 02 llenar matriz creando puntos aleatorios 
                 int dotToUse = Random.Range(0, dots.Length);
                 GameObject dot = Instantiate(dots[dotToUse], tempPosition, Quaternion.identity);
-                // dot.GetComponent<Dot>().column = i;
-                // dot.GetComponent<Dot>().row = j;
+                dot.GetComponent<Dot>().row = j;
+                dot.GetComponent<Dot>().column = i;
                 dot.transform.parent = this.transform;
                 dot.name = "( " + i + ", " + j + " )";
                 //02--
@@ -195,12 +195,12 @@ public class Board : MonoBehaviour
             {
                 if (allDots[i, j] == null)
                 {
-                    Vector2 tempPosition = new Vector2(i, j);
+                    Vector2 tempPosition = new Vector2(i, j + offSet);
                     int dotToUse = Random.Range(0, dots.Length);
                     GameObject piece = Instantiate(dots[dotToUse], tempPosition, Quaternion.identity);
                     allDots[i, j] = piece;
-                    // piece.GetComponent<Dot>().column = i;
-                    // piece.GetComponent<Dot>().row = j;
+                    piece.GetComponent<Dot>().row = j;
+                    piece.GetComponent<Dot>().column = i;
                 }
             }
         }

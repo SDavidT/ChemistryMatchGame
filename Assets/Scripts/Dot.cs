@@ -60,10 +60,10 @@ public class Dot : MonoBehaviour
 
         board = FindObjectOfType<Board>();
         score = FindObjectOfType<ScoreManager>();
-        targetX = (int)transform.position.x;
-        targetY = (int)transform.position.y;
-        row = targetY;
-        column = targetX;
+        // targetX = (int)transform.position.x;
+        // targetY = (int)transform.position.y;
+        // row = targetY;
+        // column = targetX;
     }
 
     // Update is called once per frame
@@ -142,8 +142,8 @@ public class Dot : MonoBehaviour
         { // ir a la derecha
             moveTo = MoveTo.right;
             otherDot = board.allDots[column + 1, row];
-            // previousRow = row;
-            // previousColumn = column;
+            previousRow = row;
+            previousColumn = column;
             otherDot.GetComponent<Dot>().column -= 1;//desplazamiento del punto intercambiado - vecino
             column = column + 1;//desplazamiento del punto seleccionado
             movePiece = true;
@@ -153,8 +153,8 @@ public class Dot : MonoBehaviour
         { // ir para arriba
             moveTo = MoveTo.up;
             otherDot = board.allDots[column, row + 1];
-            // previousRow = row;
-            // previousColumn = column;
+            previousRow = row;
+            previousColumn = column;
             otherDot.GetComponent<Dot>().row -= 1;
             row += 1;
             movePiece = true;
@@ -164,8 +164,8 @@ public class Dot : MonoBehaviour
         { // ir a la izquierda
             moveTo = MoveTo.left;
             otherDot = board.allDots[column - 1, row];
-            // previousRow = row;
-            // previousColumn = column;
+            previousRow = row;
+            previousColumn = column;
             otherDot.GetComponent<Dot>().column += 1;
             column -= 1;
             movePiece = true;
@@ -174,8 +174,8 @@ public class Dot : MonoBehaviour
         {// ir para abajo
             moveTo = MoveTo.down;
             otherDot = board.allDots[column, row - 1];
-            // previousRow = row;
-            // previousColumn = column;
+            previousRow = row;
+            previousColumn = column;
             otherDot.GetComponent<Dot>().row += 1;
             row -= 1;
             movePiece = true;
@@ -205,24 +205,25 @@ public class Dot : MonoBehaviour
                     {
                         otherDot.GetComponent<Dot>().isMatched = true;
                         board.currentDot.GetComponent<Dot>().isMatched = true;
-                        Debug.Log("OO");
                         board.DestroyMatches();
                         int numberDot = board.SearchCompunt("O2");
-                        Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
+                        GameObject powerDot = Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
+                        board.allDots[(int)board.currentDot.transform.position.x, (int)board.currentDot.transform.position.y] = powerDot;
+                        powerDot.GetComponent<Dot>().row = row;
+                        powerDot.GetComponent<Dot>().column = column;
                         board.DecreaseRow();
-                        //score.AddScore(inputScore);
                     }
                     else if (board.currentDot.tag == "H")
                     {
                         otherDot.GetComponent<Dot>().isMatched = true;
                         board.currentDot.GetComponent<Dot>().isMatched = true;
-
-                        Debug.Log("HH");
                         board.DestroyMatches();
                         int numberDot = board.SearchCompunt("H2");
-                        Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
+                        GameObject powerDot = Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
+                        board.allDots[(int)board.currentDot.transform.position.x, (int)board.currentDot.transform.position.y] = powerDot;
+                        powerDot.GetComponent<Dot>().row = row;
+                        powerDot.GetComponent<Dot>().column = column;
                         board.DecreaseRow();
-                        //score.AddScore(inputScore);
                     }
 
                 }
@@ -230,36 +231,39 @@ public class Dot : MonoBehaviour
                 {
                     otherDot.GetComponent<Dot>().isMatched = true;
                     board.currentDot.GetComponent<Dot>().isMatched = true;
-                    Debug.Log("H2O");
                     board.DestroyMatches();
                     int numberDot = board.SearchCompunt("H2O");
-                    Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
+                    GameObject powerDot = Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
+                    board.allDots[(int)board.currentDot.transform.position.x, (int)board.currentDot.transform.position.y] = powerDot;
+                    powerDot.GetComponent<Dot>().row = row;
+                    powerDot.GetComponent<Dot>().column = column;
                     board.DecreaseRow();
-                    //score.AddScore(inputScore);
 
                 }
                 else if (board.currentDot.tag == "S" && otherDot.tag == "O2")
                 {
                     otherDot.GetComponent<Dot>().isMatched = true;
                     board.currentDot.GetComponent<Dot>().isMatched = true;
-                    Debug.Log("SO2");
                     board.DestroyMatches();
                     int numberDot = board.SearchCompunt("SO2");
-                    Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
+                    GameObject powerDot = Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
+                    board.allDots[(int)board.currentDot.transform.position.x, (int)board.currentDot.transform.position.y] = powerDot;
+                    powerDot.GetComponent<Dot>().row = row;
+                    powerDot.GetComponent<Dot>().column = column;
                     board.DecreaseRow();
-                    //score.AddScore(inputScore);
 
                 }
                 else if (board.currentDot.tag == "H2O" && otherDot.tag == "SO2")
                 {
                     otherDot.GetComponent<Dot>().isMatched = true;
                     board.currentDot.GetComponent<Dot>().isMatched = true;
-                    Debug.Log("H2SO3");
                     board.DestroyMatches();
                     int numberDot = board.SearchCompunt("H2SO3");
-                    Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
+                    GameObject powerDot = Instantiate(board.compuntDot[numberDot], board.currentDot.transform.position, Quaternion.identity);
+                    board.allDots[(int)board.currentDot.transform.position.x, (int)board.currentDot.transform.position.y] = powerDot;
+                    powerDot.GetComponent<Dot>().row = row;
+                    powerDot.GetComponent<Dot>().column = column;
                     board.DecreaseRow();
-                    //score.AddScore(inputScore);
 
                 }
                 // else if (board.currentDot.tag == "H2O")
