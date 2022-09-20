@@ -16,29 +16,30 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        board=FindObjectOfType<Board>();
-        textMesh=GetComponent<TextMeshProUGUI>();
-        
+        board = FindObjectOfType<Board>();
+        textMesh = GetComponent<TextMeshProUGUI>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
         //score+= Time.deltaTime;
-        textMesh.text=score.ToString("0");
-        
+        textMesh.text = score.ToString("0");
+
     }
 
-    public void AddScore(float inputScore){
+    public void AddScore(float inputScore)
+    {
 
-        score+=inputScore; 
-        textMesh.text=score.ToString("0");
+        score += inputScore;
+        textMesh.text = score.ToString("0");
 
-        //int Length=board.scoreGoals.Length;
+        int Length = board.scoreGoals.Length;
 
-        // Debug.Log(score);
-        // Debug.Log(Length);
-        //scoreBar.fillAmount= 0.89f;
+        Debug.Log(score);
+        Debug.Log(Length);
+        //scoreBar.fillAmount = (float)0.59;
         // Debug.Log(scoreBar.fillAmount);
 
     }

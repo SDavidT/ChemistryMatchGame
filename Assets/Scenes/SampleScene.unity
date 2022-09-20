@@ -1044,17 +1044,17 @@ MonoBehaviour:
   height: 4
   tilePrefab: {fileID: 4690925471072565573, guid: 3daaca4953fd685468c3d4f2aacf175c, type: 3}
   dots:
-  - {fileID: 1869213814229642257, guid: 1ae739cfacad43a469b2c0dff9c2f164, type: 3}
-  - {fileID: 1567429318578664767, guid: 687086e3f8db91043bcc2f10ce332ad2, type: 3}
-  - {fileID: 7668156707913596713, guid: d113648cf7844df4d88a92a6eb686dda, type: 3}
+  - {fileID: 7472228402230670678, guid: d52b20a0c7a8ea8438968a2b33313729, type: 3}
+  - {fileID: 3412636521634929147, guid: 874ebeb654302c0438fdd3b7c69fb3fb, type: 3}
+  - {fileID: 1104756194987214007, guid: c153aaf511f6fd0449f938ed90f42d8e, type: 3}
   offSet: 20
   currentDot: {fileID: 0}
   compuntDot:
-  - {fileID: 942680547190228378, guid: 632e1e17e6eacb8498529e3469ad2658, type: 3}
-  - {fileID: 3865782298980299516, guid: 09572a2637a4af845bca49506b4389bb, type: 3}
-  - {fileID: 42949001586658235, guid: dcf745a1834ea54418249dd59ed38292, type: 3}
-  - {fileID: 7948389657816843418, guid: 8cefc6438e72f584c9b6684abe992ba7, type: 3}
-  - {fileID: 850536167544645060, guid: 0a9a4c6bedf395040acdf18787b0b79a, type: 3}
+  - {fileID: 3409167998072555493, guid: ad6c357b4dd75054284f6c2a44937118, type: 3}
+  - {fileID: 1280346893572614598, guid: f18f22c3ccd812a488303be7a49ed427, type: 3}
+  - {fileID: 3393100504421450053, guid: 6f65c11068ba4a74291a76d61fe86d56, type: 3}
+  - {fileID: 6840285220376148554, guid: 8e43e364f752d2443b9f42b6ba075ca3, type: 3}
+  - {fileID: 1210127744142938614, guid: 77dc4ca31ea299a4ba2a3781f015d8df, type: 3}
   scoreGoals: 64000000c800000090010000
 --- !u!4 &873707205
 Transform:
@@ -1389,15 +1389,15 @@ MonoBehaviour:
   levelGoals:
   - numberNeeded: 3
     numberCollected: 0
-    goalSprite: {fileID: 21300000, guid: a03c55458c1846e4887b4178e6e7ac4f, type: 3}
+    goalSprite: {fileID: 21300000, guid: b36948ee6d6f4444fa6d6a73586f73de, type: 3}
     matchValue: H2O
   - numberNeeded: 3
     numberCollected: 0
-    goalSprite: {fileID: 21300000, guid: 67337160c5aaf494bbc48ff746573d8b, type: 3}
+    goalSprite: {fileID: 21300000, guid: 83ec456744d81e84ba01f97b0191a11b, type: 3}
     matchValue: SO2
   - numberNeeded: 2
     numberCollected: 0
-    goalSprite: {fileID: 21300000, guid: eff915a825420c940bea8c924d92f445, type: 3}
+    goalSprite: {fileID: 21300000, guid: 6c495fbc744db8c4289e97fb0f16905d, type: 3}
     matchValue: H2SO3
   goalPrefab: {fileID: 7410327170172543906, guid: 26f14b9ff00e8fc4e9bf7169aa40f356, type: 3}
   goalIntroParent: {fileID: 1712822765}
