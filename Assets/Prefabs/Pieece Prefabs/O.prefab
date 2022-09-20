@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0555afa2267e3c14baf3b3875abcd94c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTo: 4
   swipeAngle: 0
   column: 0
   row: 0
@@ -124,4 +125,5 @@ MonoBehaviour:
   swipeResiste: 1
   isMatched: 0
   otherDot: {fileID: 0}
+  currentMatches: []
   inputScore: 50
