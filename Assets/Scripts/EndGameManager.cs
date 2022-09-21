@@ -24,6 +24,7 @@ public class EndGameManager : MonoBehaviour
     public GameObject txtTime;
     public TextMeshProUGUI counter;
     public int currentCounter;
+    private float timerSeconds;
 
     
     // Start is called before the first frame update
@@ -32,7 +33,7 @@ public class EndGameManager : MonoBehaviour
         SetupGame();
     }
 
-    public void SetupGame(){
+    void SetupGame(){
         currentCounter=requirements.counterValue;
 
         if(requirements.gameType==GameType.Moves){
@@ -41,7 +42,7 @@ public class EndGameManager : MonoBehaviour
             txtTime.SetActive(false);
             Debug.Log("MOVES");
         } else{
-
+            timerSeconds=1;
             txtMoves.SetActive(false);
             txtTime.SetActive(true);
             Debug.Log("TIME");
@@ -50,9 +51,30 @@ public class EndGameManager : MonoBehaviour
         counter.text="" + currentCounter;
     }
 
+    public void DecreaseCounter(){
+
+        currentCounter--;
+        counter.text=counter.text="" + currentCounter;
+        if(currentCounter<=0){
+            Debug.Log("YOU LOSE");
+            currentCounter=0;
+            counter.text=counter.text="" + currentCounter;
+        } 
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if(requirements.gameType==GameType.Time && currentCounter>0){
+
+            timerSeconds-=Time.deltaTime;
+
+            if(timerSeconds<=0){
+                DecreaseCounter();
+                timerSeconds=1;
+            }
+
+        }
         
     }
 }

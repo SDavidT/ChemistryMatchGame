@@ -17,47 +17,47 @@ public enum MoveTo
 public class Dot : MonoBehaviour
 {
 
-    [Header("variables")]
+    [Header("Board Variables")]
     public MoveTo moveTo = MoveTo.empty;
-    public float swipeAngle = 0;
     public int column;
     public int row;
-    public int targetX;
-    public int targetY;
     public int previousColumn;
     public int previousRow;
-    public float swipeResiste = 1f;
+    public int targetX;
+    public int targetY;
     public bool isMatched = false;
-    private bool movePiece = false;
-    private bool powerDot = false;
+
+
+    private EndGameManager endGameManager;
+    private Board board;
+    public GameObject otherDot;
     private Vector2 firstTouchPosition;
     private Vector2 finalTouchPosition;
     private Vector2 tempPosition;
-    public GameObject otherDot;
-    private Board board;
 
+    [Header("Swipe Stuff")]
+    public float swipeAngle = 0;
+    public float swipeResiste = 1f;
+    private bool movePiece = false;
+
+
+    private bool powerDot = false;
     public List<GameObject> currentMatches = new List<GameObject>();
-
-    //[SerializeField] private float inputScore;
     public float inputScore;
     private ScoreManager score;
 
 
-
     //private FindMatches findMatches;
-
-
     // public bool isColumnBomb;
     // public bool isRowBomb;
     // public GameObject rowArrow;
     // public GameObject columnArrow;
     // public bool isColorBomb;
     // public GameObject colorBomb;
-
     // Start is called before the first frame update
     void Start()
     {
-
+        endGameManager=FindObjectOfType<EndGameManager>();
         board = FindObjectOfType<Board>();
         score = FindObjectOfType<ScoreManager>();
         // targetX = (int)transform.position.x;
@@ -304,6 +304,14 @@ public class Dot : MonoBehaviour
                 //     //currentMatches.Union(GetColumnPiece((int)transform.position.x));
                 // }
                 movePiece = false;
+
+                if(endGameManager!=null){
+
+                    if(endGameManager.requirements.gameType==GameType.Moves){
+                        endGameManager.DecreaseCounter();
+                    }
+                }
+
             }
 
             // private void RefillBoard()

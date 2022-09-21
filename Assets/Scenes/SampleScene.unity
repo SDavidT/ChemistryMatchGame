@@ -1726,7 +1726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requirements:
     gameType: 0
-    counterValue: 55
+    counterValue: 2
   txtMoves: {fileID: 287289231}
   txtTime: {fileID: 1835450997}
   counter: {fileID: 818647253}
