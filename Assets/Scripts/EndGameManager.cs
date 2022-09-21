@@ -7,14 +7,17 @@ public enum GameType{
     Time
 }
 
+
 [System.Serializable]
 public class EndGameRequirements{
     public GameType gameType;
     public int counterValue;
     
 }
+
 public class EndGameManager : MonoBehaviour
 {
+    public EndGameRequirements requirements;
     
     // Start is called before the first frame update
     void Start()
