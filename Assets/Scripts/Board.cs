@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum TileKind{
+public enum TileKind
+{
     Breakble,
     Blank,
     Normal
 }
 
 [System.Serializable]
-public class TileType{
+public class TileType
+{
     public int x;
     public int y;
     public TileKind tilekind;
@@ -19,7 +21,7 @@ public class TileType{
 public class Board : MonoBehaviour
 {
 
-    [Header ("Scriptable Object Stuff")]
+    [Header("Scriptable Object Stuff")]
     public World world;
     public int level;
 
@@ -34,49 +36,66 @@ public class Board : MonoBehaviour
     public GameObject[] dots;
     public GameObject[] compuntDot;
     //private BackgroundTile[,] allTiles;
-    
+
     [Header("Layout")]
     public TileType[] boardLayout;
     private bool[,] blankSpaces;
     public GameObject[,] allDots;
     public Dot currentDot;
-    public int [] scoreGoals;
+    public int[] scoreGoals;
     private SoundManager soundManager;
     private GoalManager goalManager;
+
+    public GameObject destroyEffect;
+    public Dot currentDot;
+
+    public GameObject[] compuntDot;
+    private SoundManager soundManager;
+    public int[] scoreGoals;
+    private GoalManager goalManager;
+    private ScoreManager score;
     // public FindMatches findMatches;
-    // public GameObject destroyEffect;
 
+    private void Awake()
+    {
 
-    private void Awake() {
+        if (world != null)
+        {
+            if (world.levels[level] != null)
+            {
 
-        if(world!=null){
-            if(world.levels[level]!=null){
-
-                width=world.levels[level].width;
-                height=world.levels[level].height;
-                dots=world.levels[level].dots;
-                scoreGoals=world.levels[level].scoreGoals;
-                boardLayout=world.levels[level].boardLayout;
+                width = world.levels[level].width;
+                height = world.levels[level].height;
+                dots = world.levels[level].dots;
+                scoreGoals = world.levels[level].scoreGoals;
+                boardLayout = world.levels[level].boardLayout;
 
             }
-        }    
+        }
     }
+
+
+    // Start is called before the first frame update
     void Start()
     {
-        goalManager=FindObjectOfType<GoalManager>();
+        goalManager = FindObjectOfType<GoalManager>();
+        score = FindObjectOfType<ScoreManager>();
         soundManager = FindObjectOfType<SoundManager>();
         //allTiles = new BackgroundTile[width, height];
-        blankSpaces = new bool[width,height];
+        blankSpaces = new bool[width, height];
         allDots = new GameObject[width, height];
         SetUp();
     }
 
-    public void GenerateBlankSpaces(){
-        for (int i=0; i<boardLayout.Length; i++){
+    public void GenerateBlankSpaces()
+    {
+        for (int i = 0; i < boardLayout.Length; i++)
+        {
 
-            if(boardLayout[i].tilekind==TileKind.Blank){
+            if (boardLayout[i].tilekind == TileKind.Blank)
+            {
 
-                blankSpaces[boardLayout[i].x,boardLayout[i].y]=true;
+                blankSpaces[boardLayout[i].x, boardLayout[i].y] = true;
                 //Debug.Log(boardLayout[i].x);
 
             }
@@ -93,14 +112,23 @@ public class Board : MonoBehaviour
 
             for (int j = 0; j < height; j++)
             {
-                if(!blankSpaces[i,j]){
-
+                if (!blankSpaces[i, j])
+                {
                     // 01 creacion de mosaicos o matriz 
-                    Vector2 tempPosition = new Vector2(i, j);// representacion de vectores y posicion 2d con ejes X y Y
+                    Vector2 tempPosition = new Vector2(i, j + offSet);// representacion de vectores y posicion 2d con ejes X y Y
                     GameObject backgroundTile = Instantiate(tilePrefab, tempPosition, Quaternion.identity) as GameObject; // clona objetos moviendo la posicion y con rotacion 0
                     backgroundTile.transform.parent = this.transform; // se asigna cada objeto al objeto padre
                     backgroundTile.name = "( " + i + ", " + j + " )"; // se asigna el nombre a cada objeto
-                    // 01 --
+                                                                      // 01 --
+
+                    // 02 llenar matriz creando puntos aleatorios 
+                    int dotToUse = Random.Range(0, dots.Length);
+                    GameObject dot = Instantiate(dots[dotToUse], tempPosition, Quaternion.identity);
+                    dot.GetComponent<Dot>().row = j;
+                    dot.GetComponent<Dot>().column = i;
+                    dot.transform.parent = this.transform;
+                    dot.name = "( " + i + ", " + j + " )";
+                    //02--
 
                     // 02 llenar matriz creando puntos aleatorios 
                     int dotToUse = Random.Range(0, dots.Length);
@@ -146,20 +174,25 @@ public class Board : MonoBehaviour
     {
         if (allDots[column, row].GetComponent<Dot>().isMatched)
         {
-            //GameObject particle=Instantiate(destroyEffect,allDots[column,row].transform.position, Quaternion.identity); // efecto para destruir puntos
-            //Destroy(particle,.5f);
-            //
-            if(goalManager!=null){
-                goalManager.CompareGoal(allDots[column,row].tag.ToString());
+            GameObject particle = Instantiate(destroyEffect, allDots[column, row].transform.position, Quaternion.identity); // efecto para destruir puntos
+            Destroy(particle, .5f); //Efecto de destrucción
+
+            if (goalManager != null) //Actualiza los objetivos en el tablero superior
+            {
+                goalManager.CompareGoal(allDots[column, row].tag.ToString());
                 goalManager.UpdateGoals();
             }
 
+
+            if (score != null) //Suma de puntajes según el componente
+            {
+                score.AddScore(allDots[column, row].GetComponent<Dot>().inputScore);
+            }
             Destroy(allDots[column, row]);
             allDots[column, row] = null;
 
-
-            if (soundManager != null)
-            { //Activar el sonido
+            if (soundManager != null)//Activar el sonido
+            {
                 soundManager.PlayRandomDestroyNoice();
             }
         }
@@ -206,22 +239,28 @@ public class Board : MonoBehaviour
         StartCoroutine(DecreaseRowCo2());
     }
 
-    private IEnumerator DecreaseRowCo2(){
+    private IEnumerator DecreaseRowCo2()
+    {
 
         yield return new WaitForSeconds(.4f);
 
-        for (int i =0; i<width; i++){
+        for (int i = 0; i < width; i++)
+        {
 
-            for (int j =0; j<height; j++){
+            for (int j = 0; j < height; j++)
+            {
 
-                if(!blankSpaces[i,j] && allDots[i,j]==null){
+                if (!blankSpaces[i, j] && allDots[i, j] == null)
+                {
 
-                    for (int k=j+1; k<height; k++){
+                    for (int k = j + 1; k < height; k++)
+                    {
 
-                        if(allDots[i,k]!=null){
+                        if (allDots[i, k] != null)
+                        {
 
-                            allDots[i,k].GetComponent<Dot>().row=j;
-                            allDots[i,k]=null;
+                            allDots[i, k].GetComponent<Dot>().row = j;
+                            allDots[i, k] = null;
                             break;
                         }
                     }
@@ -271,14 +310,14 @@ public class Board : MonoBehaviour
         {
             for (int j = 0; j < height; j++)
             {
-                if (allDots[i, j] == null && !blankSpaces[i,j])
+                if (allDots[i, j] == null && !blankSpaces[i, j])
                 {
-                    Vector2 tempPosition = new Vector2(i, j);
+                    Vector2 tempPosition = new Vector2(i, j + offSet);
                     int dotToUse = Random.Range(0, dots.Length);
                     GameObject piece = Instantiate(dots[dotToUse], tempPosition, Quaternion.identity);
                     allDots[i, j] = piece;
-                    // piece.GetComponent<Dot>().column = i;
-                    // piece.GetComponent<Dot>().row = j;
+                    piece.GetComponent<Dot>().row = j;
+                    piece.GetComponent<Dot>().column = i;
                 }
             }
         }

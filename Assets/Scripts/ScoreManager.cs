@@ -10,37 +10,38 @@ public class ScoreManager : MonoBehaviour
 
 
     private float score;
-    public Image scoreBar;
     private TextMeshProUGUI textMesh;
     private Board board;
+    public Image scoreBar;
+
     // Start is called before the first frame update
     void Start()
     {
         board = FindObjectOfType<Board>();
         textMesh = GetComponent<TextMeshProUGUI>();
-
+        UpdateBar();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //score+= Time.deltaTime;
         textMesh.text = score.ToString("0");
-
     }
 
     public void AddScore(float inputScore)
     {
-
         score += inputScore;
         textMesh.text = score.ToString("0");
+        UpdateBar();
+    }
 
-        int Length = board.scoreGoals.Length;
-
-        //Debug.Log(score);
-        //Debug.Log(Length);
-        //scoreBar.fillAmount = (float)0.59;
-        // Debug.Log(scoreBar.fillAmount);
+    public void UpdateBar()
+    {
+        if (board != null && scoreBar != null)
+        {
+            int length = board.scoreGoals.Length;
+            scoreBar.fillAmount = (float)score / (float)board.scoreGoals[length - 1];
+        }
 
     }
 }
