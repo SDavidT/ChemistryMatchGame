@@ -47,12 +47,7 @@ public class Board : MonoBehaviour
     private GoalManager goalManager;
 
     public GameObject destroyEffect;
-    public Dot currentDot;
 
-    public GameObject[] compuntDot;
-    private SoundManager soundManager;
-    public int[] scoreGoals;
-    private GoalManager goalManager;
     private ScoreManager score;
     // public FindMatches findMatches;
 
@@ -130,14 +125,6 @@ public class Board : MonoBehaviour
                     dot.name = "( " + i + ", " + j + " )";
                     //02--
 
-                    // 02 llenar matriz creando puntos aleatorios 
-                    int dotToUse = Random.Range(0, dots.Length);
-                    GameObject dot = Instantiate(dots[dotToUse], tempPosition, Quaternion.identity);
-                    // dot.GetComponent<Dot>().column = i;
-                    // dot.GetComponent<Dot>().row = j;
-                    dot.transform.parent = this.transform;
-                    dot.name = "( " + i + ", " + j + " )";
-                    //02--
 
                     //03 Genero y alamaceno una matriz de GameObjects de puntos 
                     allDots[i, j] = dot;

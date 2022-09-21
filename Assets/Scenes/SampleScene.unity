@@ -1219,7 +1219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   world: {fileID: 11400000, guid: 5953b10c35dc66e4e9f1caf6195d7de6, type: 2}
-  level: 2
+  level: 0
   width: 6
   height: 6
   offSet: 20
@@ -1228,22 +1228,16 @@ MonoBehaviour:
   - {fileID: 7472228402230670678, guid: d52b20a0c7a8ea8438968a2b33313729, type: 3}
   - {fileID: 3412636521634929147, guid: 874ebeb654302c0438fdd3b7c69fb3fb, type: 3}
   - {fileID: 1104756194987214007, guid: c153aaf511f6fd0449f938ed90f42d8e, type: 3}
-
-  offSet: 20
-  destroyEffect: {fileID: 6606847632144514138, guid: c4c7c84363192e54db0cfd28a6adf842, type: 3}
-  currentDot: {fileID: 0}
-
   compuntDot:
-  - {fileID: 3409167998072555493, guid: ad6c357b4dd75054284f6c2a44937118, type: 3}
   - {fileID: 1280346893572614598, guid: f18f22c3ccd812a488303be7a49ed427, type: 3}
   - {fileID: 3393100504421450053, guid: 6f65c11068ba4a74291a76d61fe86d56, type: 3}
-  - {fileID: 6840285220376148554, guid: 8e43e364f752d2443b9f42b6ba075ca3, type: 3}
   - {fileID: 1210127744142938614, guid: 77dc4ca31ea299a4ba2a3781f015d8df, type: 3}
-
+  - {fileID: 3409167998072555493, guid: ad6c357b4dd75054284f6c2a44937118, type: 3}
+  - {fileID: 6840285220376148554, guid: 8e43e364f752d2443b9f42b6ba075ca3, type: 3}
   boardLayout: []
   currentDot: {fileID: 0}
-  scoreGoals: 64000000c800000090010000
-
+  scoreGoals: 64000000f4010000e8030000
+  destroyEffect: {fileID: 6606847632144514138, guid: c4c7c84363192e54db0cfd28a6adf842, type: 3}
 --- !u!4 &873707205
 Transform:
   m_ObjectHideFlags: 0
@@ -1861,7 +1855,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1600538439
 RectTransform:
   m_ObjectHideFlags: 0
