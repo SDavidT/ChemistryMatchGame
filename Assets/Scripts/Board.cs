@@ -14,7 +14,7 @@ public class Board : MonoBehaviour
     public GameObject[,] allDots;
     public int offSet;
     // public FindMatches findMatches;
-    // public GameObject destroyEffect;
+    public GameObject destroyEffect;
     public Dot currentDot;
 
     public GameObject[] compuntDot;
@@ -93,9 +93,9 @@ public class Board : MonoBehaviour
     {
         if (allDots[column, row].GetComponent<Dot>().isMatched)
         {
-            //GameObject particle=Instantiate(destroyEffect,allDots[column,row].transform.position, Quaternion.identity); // efecto para destruir puntos
-            //Destroy(particle,.5f);
-            //
+            GameObject particle = Instantiate(destroyEffect, allDots[column, row].transform.position, Quaternion.identity); // efecto para destruir puntos
+            Destroy(particle, .5f); //Efecto de destrucción
+
             if (goalManager != null) //Actualiza los objetivos en el tablero superior
             {
                 goalManager.CompareGoal(allDots[column, row].tag.ToString());

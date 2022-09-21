@@ -1048,6 +1048,7 @@ MonoBehaviour:
   - {fileID: 3412636521634929147, guid: 874ebeb654302c0438fdd3b7c69fb3fb, type: 3}
   - {fileID: 1104756194987214007, guid: c153aaf511f6fd0449f938ed90f42d8e, type: 3}
   offSet: 20
+  destroyEffect: {fileID: 6606847632144514138, guid: c4c7c84363192e54db0cfd28a6adf842, type: 3}
   currentDot: {fileID: 0}
   compuntDot:
   - {fileID: 3409167998072555493, guid: ad6c357b4dd75054284f6c2a44937118, type: 3}
