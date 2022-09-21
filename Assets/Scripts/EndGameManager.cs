@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
+
 public enum GameType{
     Moves,
     Time
 }
-
 
 [System.Serializable]
 public class EndGameRequirements{
@@ -25,11 +26,13 @@ public class EndGameManager : MonoBehaviour
     public TextMeshProUGUI counter;
     public int currentCounter;
     private float timerSeconds;
+    private Board board;
 
     
     // Start is called before the first frame update
     void Start()
     {
+        board=FindObjectOfType<Board>();
         SetupGame();
     }
 

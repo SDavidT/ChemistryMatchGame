@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+public enum GameState{
+    move,
+    wait,
+    lose,
+    win,
+    pause
+}
 public enum TileKind
 {
     Breakble,
