@@ -144,7 +144,7 @@ public class Dot : MonoBehaviour
             // previousRow = row;
             // previousColumn = column;
             if(otherDot!=null){
-                otherDot.GetComponent<Dot>().column -= 2;//desplazamiento del punto intercambiado - vecino
+                otherDot.GetComponent<Dot>().column -= 1;//desplazamiento del punto intercambiado - vecino
                 column = column + 1;//desplazamiento del punto seleccionado
                 movePiece = true;
             }
@@ -507,7 +507,7 @@ public class Dot : MonoBehaviour
         {
             for (int j = 0; j < board.height; j++)
             {
-                if (board.allDots[i, row] != null)
+                if (board.allDots[i, j] != null)
                 {
                     board.allDots[i, j].GetComponent<Dot>().isMatched = true;
                 }

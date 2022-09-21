@@ -179,37 +179,66 @@ public class Board : MonoBehaviour
 
     public void DecreaseRow()
     {
-        StartCoroutine(DecreaseRowCo());
+        StartCoroutine(DecreaseRowCo2());
     }
 
-    public IEnumerator DecreaseRowCo()
-    {
-        int nullCount = 0;
-        yield return new WaitForSeconds(.4f); // Tiempo para que aparezca la combinación de elemento 
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < height; j++)
-            {
-                if (allDots[i, j] == null)
-                {
-                    nullCount++;
-                    // if (i == currentDot.column && j == currentDot.row) //evitar que se llene el espacio del componente
-                    // {
-                    //     nullCount -= 1;
-                    // }
-                }
-                else if (nullCount > 0)
-                {
-                    allDots[i, j].GetComponent<Dot>().row -= nullCount;
-                    allDots[i, j] = null;
+    private IEnumerator DecreaseRowCo2(){
+
+        yield return new WaitForSeconds(.4f);
+
+        for (int i =0; i<width; i++){
+
+            for (int j =0; j<height; j++){
+
+                if(!blankSpaces[i,j] && allDots[i,j]==null){
+
+                    for (int k=j+1; k<height; k++){
+
+                        if(allDots[i,k]!=null){
+
+                            allDots[i,k].GetComponent<Dot>().row=j;
+                            allDots[i,k]=null;
+                            break;
+                        }
+                    }
                 }
             }
-            nullCount = 0;
         }
+
         yield return new WaitForSeconds(.4f);
-        //RefillBoard();
         StartCoroutine(RefillBoardCo());
     }
+
+    /////////// 
+
+    // public IEnumerator DecreaseRowCo()
+    // {
+    //     int nullCount = 0;
+    //     yield return new WaitForSeconds(.4f); // Tiempo para que aparezca la combinación de elemento 
+    //     for (int i = 0; i < width; i++)
+    //     {
+    //         for (int j = 0; j < height; j++)
+    //         {
+    //             if (allDots[i, j] == null)
+    //             {
+    //                 nullCount++;
+    //                 // if (i == currentDot.column && j == currentDot.row) //evitar que se llene el espacio del componente
+    //                 // {
+    //                 //     nullCount -= 1;
+    //                 // }
+    //             }
+    //             else if (nullCount > 0)
+    //             {
+    //                 allDots[i, j].GetComponent<Dot>().row -= nullCount;
+    //                 allDots[i, j] = null;
+    //             }
+    //         }
+    //         nullCount = 0;
+    //     }
+    //     yield return new WaitForSeconds(.4f);
+    //     //RefillBoard();
+    //     StartCoroutine(RefillBoardCo());
+    // }
 
     //10 Rellenar el tablero
     private void RefillBoard()
@@ -218,7 +247,7 @@ public class Board : MonoBehaviour
         {
             for (int j = 0; j < height; j++)
             {
-                if (allDots[i, j] == null)
+                if (allDots[i, j] == null && !blankSpaces[i,j])
                 {
                     Vector2 tempPosition = new Vector2(i, j);
                     int dotToUse = Random.Range(0, dots.Length);
