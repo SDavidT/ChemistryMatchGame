@@ -18,25 +18,49 @@ public class TileType{
 
 public class Board : MonoBehaviour
 {
+
+    [Header ("Scriptable Object Stuff")]
     public World world;
+    public int level;
+
+    [Header("Board Dimensions")]
     public int width;
     public int height;
-    public GameObject tilePrefab;
-    //private BackgroundTile[,] allTiles;
-    private bool[,] blankSpaces;
-    public GameObject[] dots;
-    public GameObject[,] allDots;
     public int offSet;
+    //offset
+
+    [Header("Prefabs")]
+    public GameObject tilePrefab;
+    public GameObject[] dots;
+    public GameObject[] compuntDot;
+    //private BackgroundTile[,] allTiles;
+    
+    [Header("Layout")]
+    public TileType[] boardLayout;
+    private bool[,] blankSpaces;
+    public GameObject[,] allDots;
+    public Dot currentDot;
+    public int [] scoreGoals;
+    private SoundManager soundManager;
+    private GoalManager goalManager;
     // public FindMatches findMatches;
     // public GameObject destroyEffect;
-    public Dot currentDot;
-    public GameObject[] compuntDot;
-    private SoundManager soundManager;
-    public int [] scoreGoals;
-    private GoalManager goalManager;
-    public TileType[] boardLayout;
-    
-    // Start is called before the first frame update
+
+
+    private void Awake() {
+
+        if(world!=null){
+            if(world.levels[level]!=null){
+
+                width=world.levels[level].width;
+                height=world.levels[level].height;
+                dots=world.levels[level].dots;
+                scoreGoals=world.levels[level].scoreGoals;
+                boardLayout=world.levels[level].boardLayout;
+
+            }
+        }    
+    }
     void Start()
     {
         goalManager=FindObjectOfType<GoalManager>();
