@@ -40,6 +40,7 @@ public class ScoreManager : MonoBehaviour
         if (board != null && scoreBar != null)
         {
             int length = board.scoreGoals.Length;
+            Debug.Log((float)score / (float)board.scoreGoals[length - 1]);
             scoreBar.fillAmount = (float)score / (float)board.scoreGoals[length - 1];
         }
 
