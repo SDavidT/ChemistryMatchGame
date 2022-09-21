@@ -46,7 +46,7 @@ public class Board : MonoBehaviour
     private SoundManager soundManager;
     private GoalManager goalManager;
 
-    public GameObject destroyEffect;
+    public GameObject[] destroyEffect;
 
     private ScoreManager score;
     // public FindMatches findMatches;
@@ -161,8 +161,18 @@ public class Board : MonoBehaviour
     {
         if (allDots[column, row].GetComponent<Dot>().isMatched)
         {
-            GameObject particle = Instantiate(destroyEffect, allDots[column, row].transform.position, Quaternion.identity); // efecto para destruir puntos
-            Destroy(particle, .5f); //Efecto de destrucción
+            if (allDots[column, row].tag == "SO2")
+            {
+                GameObject particle = Instantiate(destroyEffect[1], allDots[column, row].transform.position, Quaternion.identity); // efecto para destruir puntos
+                Destroy(particle, .5f); //Efecto de destrucción
+            }
+            else
+            {
+                GameObject particle = Instantiate(destroyEffect[0], allDots[column, row].transform.position, Quaternion.identity); // efecto para destruir puntos
+                Destroy(particle, .5f); //Efecto de destrucción
+            }
+
+
 
             if (goalManager != null) //Actualiza los objetivos en el tablero superior
             {
