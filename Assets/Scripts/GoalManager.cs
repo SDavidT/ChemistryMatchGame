@@ -20,12 +20,28 @@ public class GoalManager : MonoBehaviour
     public GameObject goalIntroParent;
     public GameObject goalGameParent;
     public List<GoalPanel> currentGoals = new List<GoalPanel>();
+    private EndGameManager endGame;
+    private Board board;
+
 
     // Start is called before the first frame update
     void Start()
     {
 
+        board=FindObjectOfType<Board>();
+        endGame=FindObjectOfType<EndGameManager>();
+        GetGoals();
         SetupGoals();
+    }
+
+    void GetGoals(){
+        if(board!=null){
+            if(board.world!=null){
+                if(board.world.levels[board.level]!=null){
+                    levelGoals=board.world.levels[board.level].levelGoals;
+                }
+            }
+        }
     }
 
     void SetupGoals()
@@ -69,7 +85,10 @@ public class GoalManager : MonoBehaviour
 
         if (goalsCompleted >= levelGoals.Length)
         {
-            Debug.Log("YOU WIN");
+            if(endGame!=null){
+                endGame.WinGame();
+                Debug.Log("YOU WIN");
+            }
         }
     }
 

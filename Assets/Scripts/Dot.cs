@@ -261,7 +261,7 @@ public class Dot : MonoBehaviour
                     board.DecreaseRow();
 
                 }
-                else if (board.currentDot.tag == "S" && otherDot.tag == "O2")
+                else if (board.currentDot.tag == "S" && otherDot.tag == "O2" || board.currentDot.tag == "O2" && otherDot.tag == "S")
                 {
                     otherDot.GetComponent<Dot>().isMatched = true;
                     board.currentDot.GetComponent<Dot>().isMatched = true;
@@ -274,7 +274,7 @@ public class Dot : MonoBehaviour
                     board.DecreaseRow();
 
                 }
-                else if (board.currentDot.tag == "H2O" && otherDot.tag == "SO2")
+                else if (board.currentDot.tag == "H2O" && otherDot.tag == "SO2" || board.currentDot.tag == "SO2" && otherDot.tag == "H2O")
                 {
                     otherDot.GetComponent<Dot>().isMatched = true;
                     board.currentDot.GetComponent<Dot>().isMatched = true;

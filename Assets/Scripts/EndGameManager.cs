@@ -36,7 +36,18 @@ public class EndGameManager : MonoBehaviour
     void Start()
     {
         board=FindObjectOfType<Board>();
+        SetGameType();
         SetupGame();
+    }
+
+    void SetGameType(){
+        
+        if(board !=null){
+            if(board.world.levels[board.level]!=null){
+
+                requirements=board.world.levels[board.level].endGameRequirements;
+            }
+        }
     }
 
     void SetupGame(){
@@ -78,6 +89,9 @@ public class EndGameManager : MonoBehaviour
         currentCounter=0;
         counter.text=counter.text="" + currentCounter;
 
+        FadePanelController fade= FindObjectOfType<FadePanelController>();
+        fade.GameOver();
+
     }
 
     public void LoseGame(){
@@ -86,6 +100,9 @@ public class EndGameManager : MonoBehaviour
         Debug.Log("YOU LOSE");
         currentCounter=0;
         counter.text=counter.text="" + currentCounter;
+
+        FadePanelController fade= FindObjectOfType<FadePanelController>();
+        fade.GameOver();
     }
 
     // Update is called once per frame
