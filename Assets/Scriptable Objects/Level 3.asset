@@ -15,11 +15,29 @@ MonoBehaviour:
   width: 5
   height: 7
   boardLayout:
-  - x: 2
-    y: 3
-    tilekind: 1
   - x: 0
     y: 0
+    tilekind: 1
+  - x: 0
+    y: 1
+    tilekind: 1
+  - x: 0
+    y: 6
+    tilekind: 1
+  - x: 0
+    y: 5
+    tilekind: 1
+  - x: 4
+    y: 0
+    tilekind: 1
+  - x: 4
+    y: 1
+    tilekind: 1
+  - x: 4
+    y: 6
+    tilekind: 1
+  - x: 4
+    y: 5
     tilekind: 1
   dots:
   - {fileID: 7472228402230670678, guid: d52b20a0c7a8ea8438968a2b33313729, type: 3}
