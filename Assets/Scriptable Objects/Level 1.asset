@@ -20,3 +20,15 @@ MonoBehaviour:
   - {fileID: 3412636521634929147, guid: 874ebeb654302c0438fdd3b7c69fb3fb, type: 3}
   - {fileID: 1104756194987214007, guid: c153aaf511f6fd0449f938ed90f42d8e, type: 3}
   scoreGoals: 32000000bc020000dc050000
+  endGameRequirements:
+    gameType: 0
+    counterValue: 50
+  levelGoals:
+  - numberNeeded: 2
+    numberCollected: 2
+    goalSprite: {fileID: 21300000, guid: b36948ee6d6f4444fa6d6a73586f73de, type: 3}
+    matchValue: H2O
+  - numberNeeded: 2
+    numberCollected: 2
+    goalSprite: {fileID: 21300000, guid: 83ec456744d81e84ba01f97b0191a11b, type: 3}
+    matchValue: SO2
