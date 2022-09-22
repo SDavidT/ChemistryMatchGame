@@ -21,12 +21,15 @@ public class EndGameRequirements{
 public class EndGameManager : MonoBehaviour
 {
     public EndGameRequirements requirements;
+    public GameObject youWinGame;
+    public GameObject tryAgainGame;
     public GameObject txtMoves;
     public GameObject txtTime;
     public TextMeshProUGUI counter;
     public int currentCounter;
     private float timerSeconds;
     private Board board;
+
 
     
     // Start is called before the first frame update
@@ -61,13 +64,28 @@ public class EndGameManager : MonoBehaviour
             currentCounter--;
             counter.text=counter.text="" + currentCounter;
             if(currentCounter<=0){
-                board.currentState = GameState.lose;
-                Debug.Log("YOU LOSE");
-                currentCounter=0;
-                counter.text=counter.text="" + currentCounter;
+                LoseGame();
+                
             } 
         }
 
+    }
+
+    public void WinGame(){
+
+        youWinGame.SetActive(true);
+        board.currentState=GameState.win;
+        currentCounter=0;
+        counter.text=counter.text="" + currentCounter;
+
+    }
+
+    public void LoseGame(){
+        tryAgainGame.SetActive(true);
+        board.currentState = GameState.lose;
+        Debug.Log("YOU LOSE");
+        currentCounter=0;
+        counter.text=counter.text="" + currentCounter;
     }
 
     // Update is called once per frame
