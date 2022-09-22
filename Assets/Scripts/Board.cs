@@ -56,7 +56,8 @@ public class Board : MonoBehaviour
     public GameObject[] destroyEffect;
 
     private ScoreManager score;
-    // public FindMatches findMatches;
+
+    public GameState currentState=GameState.move;
 
     private void Awake()
     {
