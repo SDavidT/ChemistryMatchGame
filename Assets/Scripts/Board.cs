@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public enum GameState{
+//BORRAR
+public enum GameState
+{
     move,
     wait,
     lose,
@@ -57,7 +58,7 @@ public class Board : MonoBehaviour
 
     private ScoreManager score;
 
-    public GameState currentState=GameState.move;
+    public GameState currentState = GameState.move;
 
     private void Awake()
     {
@@ -88,7 +89,7 @@ public class Board : MonoBehaviour
         blankSpaces = new bool[width, height];
         allDots = new GameObject[width, height];
         SetUp();
-        currentState=GameState.pause;
+        currentState = GameState.pause;
     }
 
     public void GenerateBlankSpaces()
