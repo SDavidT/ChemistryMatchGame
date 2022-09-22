@@ -15,6 +15,15 @@ public class FadePanelController : MonoBehaviour
 
             panelAnim.SetBool("Out", true);
             gameInfoAnim.SetBool("Out",true);
+            StartCoroutine(GameStartCo());
         }
+    }
+
+
+    IEnumerator GameStartCo(){
+        yield return new WaitForSeconds(1f);
+
+        Board board = FindObjectOfType<Board>();
+        board.currentState=GameState.move;
     }
 }

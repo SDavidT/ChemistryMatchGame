@@ -118,18 +118,21 @@ public class Dot : MonoBehaviour
 
     void CalculateAngle()
     {
-        if (Mathf.Abs(finalTouchPosition.y - firstTouchPosition.y) > swipeResiste || Mathf.Abs(finalTouchPosition.x - firstTouchPosition.x) > swipeResiste)
-        {
-            swipeAngle = Mathf.Atan2(finalTouchPosition.y - firstTouchPosition.y, finalTouchPosition.x - firstTouchPosition.x) * 180 / Mathf.PI;
-            MovePieces();
-            board.currentDot = this;
-            powerDot = false;
-        }
-        else
-        {
-            powerDot = true;
-            board.currentDot = this;
-            PowersDots();
+        if(board.currentState == GameState.move){
+
+            if (Mathf.Abs(finalTouchPosition.y - firstTouchPosition.y) > swipeResiste || Mathf.Abs(finalTouchPosition.x - firstTouchPosition.x) > swipeResiste)
+            {
+                swipeAngle = Mathf.Atan2(finalTouchPosition.y - firstTouchPosition.y, finalTouchPosition.x - firstTouchPosition.x) * 180 / Mathf.PI;
+                MovePieces();
+                board.currentDot = this;
+                powerDot = false;
+            }
+            else
+            {
+                powerDot = true;
+                board.currentDot = this;
+                PowersDots();
+            }
         }
     }
 

@@ -1663,6 +1663,7 @@ MonoBehaviour:
   destroyEffect:
   - {fileID: 6606847632144514138, guid: c4c7c84363192e54db0cfd28a6adf842, type: 3}
   - {fileID: 1800181757140855386, guid: a29e7b60085f7d04f81abbfcec3a77e8, type: 3}
+  currentState: 0
 --- !u!4 &873707205
 Transform:
   m_ObjectHideFlags: 0
@@ -1880,8 +1881,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requirements:
-    gameType: 0
-    counterValue: 3
+    gameType: 1
+    counterValue: 10
   txtMoves: {fileID: 287289231}
   txtTime: {fileID: 1835450997}
   counter: {fileID: 818647253}

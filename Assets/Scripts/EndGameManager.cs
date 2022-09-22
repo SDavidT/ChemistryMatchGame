@@ -56,13 +56,18 @@ public class EndGameManager : MonoBehaviour
 
     public void DecreaseCounter(){
 
-        currentCounter--;
-        counter.text=counter.text="" + currentCounter;
-        if(currentCounter<=0){
-            Debug.Log("YOU LOSE");
-            currentCounter=0;
+        if(board.currentState!=GameState.pause){
+
+            currentCounter--;
             counter.text=counter.text="" + currentCounter;
-        } 
+            if(currentCounter<=0){
+                board.currentState = GameState.lose;
+                Debug.Log("YOU LOSE");
+                currentCounter=0;
+                counter.text=counter.text="" + currentCounter;
+            } 
+        }
+
     }
 
     // Update is called once per frame
