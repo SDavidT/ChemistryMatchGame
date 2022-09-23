@@ -28,17 +28,22 @@ public class GoalManager : MonoBehaviour
     void Start()
     {
 
-        board=FindObjectOfType<Board>();
-        endGame=FindObjectOfType<EndGameManager>();
+        board = FindObjectOfType<Board>();
+        endGame = FindObjectOfType<EndGameManager>();
         GetGoals();
+        ResetNumberCollected();
         SetupGoals();
     }
 
-    void GetGoals(){
-        if(board!=null){
-            if(board.world!=null){
-                if(board.world.levels[board.level]!=null){
-                    levelGoals=board.world.levels[board.level].levelGoals;
+    void GetGoals()
+    {
+        if (board != null)
+        {
+            if (board.world != null)
+            {
+                if (board.world.levels[board.level] != null)
+                {
+                    levelGoals = board.world.levels[board.level].levelGoals;
                 }
             }
         }
@@ -87,9 +92,11 @@ public class GoalManager : MonoBehaviour
         {
             Debug.Log(goalsCompleted);
             Debug.Log(levelGoals.Length);
-            if(endGame!=null){
+            if (endGame != null)
+            {
                 endGame.WinGame();
                 Debug.Log("YOU WIN");
+                ResetNumberCollected();
             }
         }
     }
@@ -103,6 +110,14 @@ public class GoalManager : MonoBehaviour
 
                 levelGoals[i].numberCollected++;
             }
+        }
+    }
+
+    public void ResetNumberCollected()
+    {
+        for (int i = 0; i < levelGoals.Length; i++)
+        {
+            levelGoals[i].numberCollected = 0;
         }
     }
 }
