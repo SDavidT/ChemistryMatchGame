@@ -10,7 +10,7 @@ public class SettingsPanelController : MonoBehaviour
     {
         if (panelSettings != null)
         {
-            panelSettings.SetBool("Out", true);
+            panelSettings.SetBool("Out2", true);
             panelSettings.SetBool("In", false);
         }
     }
@@ -20,7 +20,7 @@ public class SettingsPanelController : MonoBehaviour
         if (panelSettings != null)
         {
             panelSettings.SetBool("In", true);
-            panelSettings.SetBool("Out", false);
+            panelSettings.SetBool("Out2", false);
         }
     }
 }

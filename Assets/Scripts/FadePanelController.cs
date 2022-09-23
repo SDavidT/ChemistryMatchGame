@@ -5,9 +5,10 @@ using TMPro;
 
 
 [System.Serializable]
-public class numberLevel{
+public class numberLevel
+{
     public int intlevel;
-    
+
 }
 public class FadePanelController : MonoBehaviour
 {
@@ -19,34 +20,39 @@ public class FadePanelController : MonoBehaviour
     public Board board;
     int prueba;
 
-    void Start(){
+    void Start()
+    {
         board = FindObjectOfType<Board>();
-        prueba=board.level + 1 ;
-        level.text="LEVEL"+ " " + prueba;
+        prueba = board.level + 1;
+        level.text = "LEVEL" + " " + prueba;
     }
-    public void OK(){
+    public void OK()
+    {
 
-        if(panelAnim!=null && gameInfoAnim !=null){
+        if (panelAnim != null && gameInfoAnim != null)
+        {
 
             panelAnim.SetBool("Out", true);
-            gameInfoAnim.SetBool("Out",true);
+            gameInfoAnim.SetBool("Out", true);
             StartCoroutine(GameStartCo());
-            
+
         }
     }
 
-    public void GameOver(){
+    public void GameOver()
+    {
 
-        panelAnim.SetBool("Out",true);
-        panelAnim.SetBool("Game Over",true);
-        
-        
+        panelAnim.SetBool("Out", true);
+        //panelAnim.SetBool("Game Over",true);
+
+
     }
 
-    IEnumerator GameStartCo(){
+    IEnumerator GameStartCo()
+    {
         yield return new WaitForSeconds(1f);
 
         Board board = FindObjectOfType<Board>();
-        board.currentState=GameState.move;
+        board.currentState = GameState.move;
     }
 }

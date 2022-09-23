@@ -2533,6 +2533,7 @@ MonoBehaviour:
   destroyNoice:
   - {fileID: 829586230}
   - {fileID: 617697373}
+  audioMix: {fileID: 0}
 --- !u!1 &881594609
 GameObject:
   m_ObjectHideFlags: 0
