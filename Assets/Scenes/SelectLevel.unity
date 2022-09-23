@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c1461ed43ecae94ab1a79430eacd6a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 1
+  isActive: 0
   activeSprite: {fileID: 21300000, guid: 4374bf7ecc801ca41a4cc384514abc21, type: 3}
   lockedSprite: {fileID: 21300000, guid: 6f1182b499add4a4c8f6722f887a5a10, type: 3}
   levelText: {fileID: 273392945}
@@ -1245,7 +1245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c1461ed43ecae94ab1a79430eacd6a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 1
+  isActive: 0
   activeSprite: {fileID: 21300000, guid: 4374bf7ecc801ca41a4cc384514abc21, type: 3}
   lockedSprite: {fileID: 21300000, guid: 6f1182b499add4a4c8f6722f887a5a10, type: 3}
   levelText: {fileID: 515315114}
@@ -2186,7 +2186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c1461ed43ecae94ab1a79430eacd6a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 1
+  isActive: 0
   activeSprite: {fileID: 21300000, guid: 4374bf7ecc801ca41a4cc384514abc21, type: 3}
   lockedSprite: {fileID: 21300000, guid: 6f1182b499add4a4c8f6722f887a5a10, type: 3}
   levelText: {fileID: 1377277764}
