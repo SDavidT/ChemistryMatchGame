@@ -99,18 +99,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTo: 4
-  swipeAngle: 0
   column: 0
   row: 0
-  targetX: 0
-  targetY: 0
   previousColumn: 0
   previousRow: 0
-  swipeResiste: 1
+  targetX: 0
+  targetY: 0
   isMatched: 0
   otherDot: {fileID: 0}
+  swipeAngle: 0
+  swipeResiste: 1
   currentMatches: []
-  inputScore: 50
+  inputScore: 20
 --- !u!61 &7740217281435811481
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -128,7 +128,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.0419922, y: 1.0419922}
+    oldSize: {x: 0.88916665, y: 0.88916665}
     newSize: {x: 1.0419922, y: 1.0419922}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

@@ -99,18 +99,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTo: 4
-  swipeAngle: 0
   column: 0
   row: 0
-  targetX: 0
-  targetY: 0
   previousColumn: 0
   previousRow: 0
-  swipeResiste: 1
+  targetX: 0
+  targetY: 0
   isMatched: 0
   otherDot: {fileID: 0}
+  swipeAngle: 0
+  swipeResiste: 1
   currentMatches: []
-  inputScore: 50
+  inputScore: 20
 --- !u!58 &-3684934965426031611
 CircleCollider2D:
   m_ObjectHideFlags: 0
