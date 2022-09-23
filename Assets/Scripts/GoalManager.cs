@@ -85,6 +85,8 @@ public class GoalManager : MonoBehaviour
 
         if (goalsCompleted >= levelGoals.Length)
         {
+            Debug.Log(goalsCompleted);
+            Debug.Log(levelGoals.Length);
             if(endGame!=null){
                 endGame.WinGame();
                 Debug.Log("YOU WIN");
