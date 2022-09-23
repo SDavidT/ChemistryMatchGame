@@ -772,7 +772,7 @@ GameObject:
   - component: {fileID: 464945827}
   - component: {fileID: 464945828}
   m_Layer: 5
-  m_Name: Music
+  m_Name: ControlSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -921,7 +921,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sound
+  m_text: Music
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bb878d745de2ca5468fccec64437de46, type: 2}
   m_sharedMaterial: {fileID: 7717111278871680792, guid: bb878d745de2ca5468fccec64437de46, type: 2}
@@ -2694,7 +2694,7 @@ GameObject:
   - component: {fileID: 2097187568}
   - component: {fileID: 2097187569}
   m_Layer: 5
-  m_Name: Sound
+  m_Name: ControlMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
