@@ -5,14 +5,11 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class LevelButton : MonoBehaviour
+
+public class ConfirmPanel : MonoBehaviour
 {
-    public TextMeshProUGUI levelText;
-    public int level;
-    public GameObject confirmPanel;
-    //public GameObject gameObject;
-    
     // Start is called before the first frame update
+    public string levelToLoad;
     void Start()
     {
         
@@ -24,8 +21,17 @@ public class LevelButton : MonoBehaviour
         
     }
 
-    public void ConfirmPanel(){
-        confirmPanel.SetActive(true);
+    public void Cancel(){
+
+        this.gameObject.SetActive(false);
     }
-    
+
+    public void Play(){
+
+
+        //Debug.Log(levelText);
+
+        SceneManager.LoadScene(levelToLoad);
+
+    }
 }
