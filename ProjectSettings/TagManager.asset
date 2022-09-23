@@ -12,6 +12,7 @@ TagManager:
   - H2O
   - H2SO3
   - SO2
+  - audio
   layers:
   - Default
   - TransparentFX
