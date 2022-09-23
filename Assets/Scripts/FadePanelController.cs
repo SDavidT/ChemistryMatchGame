@@ -43,7 +43,7 @@ public class FadePanelController : MonoBehaviour
     {
 
         panelAnim.SetBool("Out", true);
-        //panelAnim.SetBool("Game Over",true);
+        panelAnim.SetBool("Game Over", true);
 
 
     }
