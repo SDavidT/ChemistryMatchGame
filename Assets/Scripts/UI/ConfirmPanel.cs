@@ -10,6 +10,7 @@ public class ConfirmPanel : MonoBehaviour
 {
     // Start is called before the first frame update
     public string levelToLoad;
+    public int level;
     void Start()
     {
         
@@ -29,7 +30,7 @@ public class ConfirmPanel : MonoBehaviour
     public void Play(){
 
 
-        //Debug.Log(levelText);
+        PlayerPrefs.SetInt("Current Level",level-1);
 
         SceneManager.LoadScene(levelToLoad);
 
