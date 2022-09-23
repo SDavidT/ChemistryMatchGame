@@ -800,7 +800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0690a8315fb5d54428bed6f8a7c660eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToLoad: SampleScene
+  levelToLoad: Levels
 --- !u!1 &397508160
 GameObject:
   m_ObjectHideFlags: 0
