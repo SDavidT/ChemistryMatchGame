@@ -16,6 +16,7 @@ public class FadePanelController : MonoBehaviour
     public numberLevel numberLevel;
     public Animator panelAnim;
     public Animator gameInfoAnim;
+    public Animator panelPause;
     public TextMeshProUGUI level;
     public Board board;
     int prueba;
@@ -41,7 +42,6 @@ public class FadePanelController : MonoBehaviour
 
     public void GameOver()
     {
-
         panelAnim.SetBool("Out", true);
         panelAnim.SetBool("Game Over", true);
 
@@ -54,4 +54,25 @@ public class FadePanelController : MonoBehaviour
         Board board = FindObjectOfType<Board>();
         board.currentState = GameState.move;
     }
+
+    ///PAUSE MENU
+
+    public void PauseIn()
+    {
+        if (panelPause != null)
+        {
+            panelPause.SetBool("PauseIn", true);
+            panelPause.SetBool("PauseOut", false);
+        }
+    }
+
+    public void PauseOut()
+    {
+        if (panelPause != null)
+        {
+            panelPause.SetBool("PauseIn", false);
+            panelPause.SetBool("PauseOut", true);
+        }
+    }
+
 }
