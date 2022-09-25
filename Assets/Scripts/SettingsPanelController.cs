@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SettingsPanelController : MonoBehaviour
 {
@@ -87,5 +88,10 @@ public class SettingsPanelController : MonoBehaviour
             soundButton.sprite = musicOffSprite;
             PlayerPrefs.SetInt("Sound", 1);
         }
+    }
+
+    public void BackMain()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
