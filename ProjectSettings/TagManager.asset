@@ -13,6 +13,7 @@ TagManager:
   - H2SO3
   - SO2
   - audio
+  - Board
   layers:
   - Default
   - TransparentFX

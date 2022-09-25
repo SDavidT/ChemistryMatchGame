@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-//using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
@@ -31,15 +30,19 @@ public class SoundManager : MonoBehaviour
 
     public void PlayRandomDestroyNoice()
     {
-        int ClipToPlay = Random.Range(0, destroyNoice.Length);
-        destroyNoice[ClipToPlay].Play();
+        if (PlayerPrefs.HasKey("Sound"))
+        {
+            if (PlayerPrefs.GetInt("Sound") == 1)
+            {
+                int ClipToPlay = Random.Range(0, destroyNoice.Length);
+                destroyNoice[ClipToPlay].Play();
+            }
+        }
+        else
+        {
+            int ClipToPlay = Random.Range(0, destroyNoice.Length);
+            destroyNoice[ClipToPlay].Play();
+        }
     }
-
-    // [SerializeField] private AudioMixer audioMix;
-
-    // public void ControlVolume(float volume)
-    // {
-    //     audioMix.SetFloat("Volume", volume);
-    // }
 
 }

@@ -62,9 +62,10 @@ public class Board : MonoBehaviour
 
     private void Awake()
     {
-        if(PlayerPrefs.HasKey("Current Level")){
+        if (PlayerPrefs.HasKey("Current Level"))
+        {
 
-            level=PlayerPrefs.GetInt("Current Level");
+            level = PlayerPrefs.GetInt("Current Level");
         }
 
         if (world != null)
@@ -337,10 +338,11 @@ public class Board : MonoBehaviour
     private IEnumerator RefillBoardCo()
     {
         RefillBoard();
+        if (currentState != GameState.pause)
+        {
+            currentState = GameState.move;
+        }
         yield return new WaitForSeconds(.4f);
     }
-
-
-
 
 }

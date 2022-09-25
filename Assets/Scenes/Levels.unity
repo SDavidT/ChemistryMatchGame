@@ -394,8 +394,8 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.0600014, y: -0.87999964}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 3.0599976, y: -0.87999964}
   m_SizeDelta: {x: 16.12, y: -5.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &99090373
@@ -646,6 +646,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199119034}
   m_CullTransparentMesh: 1
+--- !u!1 &254603034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 254603035}
+  - component: {fileID: 254603036}
+  m_Layer: 0
+  m_Name: PauseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &254603035
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254603034}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 873707205}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &254603036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254603034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f0a14361f151a4c9ad1ec9a83bf1f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pausePanel: {fileID: 377531826}
+  paused: 0
+  panelPause: {fileID: 377531830}
+  soundButton: {fileID: 1871771033}
+  musicOnSprite: {fileID: 21300000, guid: 20ca076eafda7f349b2d15400f929c32, type: 3}
+  musicOffSprite: {fileID: 21300000, guid: 6f0cacd3c4c424c48acaa384057bed63, type: 3}
 --- !u!1 &265047918
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,8 +991,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1754647786}
-        m_TargetAssemblyTypeName: FadePanelController, Assembly-CSharp
+      - m_Target: {fileID: 254603036}
+        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
         m_MethodName: PauseOut
         m_Mode: 1
         m_Arguments:
@@ -1009,7 +1059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &377531827
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1954,7 +2004,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.30231774, y: 0.379}
   m_AnchorMax: {x: 0.71000004, y: 0.46444696}
-  m_AnchoredPosition: {x: -4.950001, y: -3.1100006}
+  m_AnchoredPosition: {x: -4.949997, y: -3.1100006}
   m_SizeDelta: {x: -2.0999908, y: 3.1100006}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &520154016
@@ -3490,7 +3540,7 @@ GameObject:
   - component: {fileID: 873707204}
   m_Layer: 0
   m_Name: Board
-  m_TagString: Untagged
+  m_TagString: Board
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3546,6 +3596,7 @@ Transform:
   - {fileID: 1754647785}
   - {fileID: 1282763558}
   - {fileID: 996045461}
+  - {fileID: 254603035}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4499,7 +4550,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.044000003, y: 0.018873686}
   m_AnchorMax: {x: 0.178, y: 0.08987369}
-  m_AnchoredPosition: {x: -0.000015258789, y: 0}
+  m_AnchoredPosition: {x: -0.000030517578, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1122822623
@@ -4546,8 +4597,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1754647786}
-        m_TargetAssemblyTypeName: FadePanelController, Assembly-CSharp
+      - m_Target: {fileID: 254603036}
+        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
         m_MethodName: PauseIn
         m_Mode: 1
         m_Arguments:
@@ -5174,7 +5225,7 @@ GameObject:
   - component: {fileID: 1423384717}
   - component: {fileID: 1423384716}
   m_Layer: 5
-  m_Name: ExitPauseButton
+  m_Name: ExitMainPauseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5244,7 +5295,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1423384717}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 254603036}
+        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
+        m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1423384717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6167,7 +6230,6 @@ MonoBehaviour:
     intlevel: 0
   panelAnim: {fileID: 1600538440}
   gameInfoAnim: {fileID: 881594613}
-  panelPause: {fileID: 377531830}
   level: {fileID: 1515161568}
   board: {fileID: 0}
 --- !u!1 &1787744388
@@ -6745,7 +6807,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1871771033}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 254603036}
+        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
+        m_MethodName: SoundButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1871771033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7288,7 +7362,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1973566502}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 254603036}
+        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
+        m_MethodName: PauseOut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1973566502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7366,7 +7452,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.032126483, y: 0.05489838}
   m_AnchorMax: {x: 0.89347595, y: 0.94600004}
-  m_AnchoredPosition: {x: 1.8899994, y: -2.4898987}
+  m_AnchoredPosition: {x: 1.8900146, y: -2.4898987}
   m_SizeDelta: {x: 3.7800007, y: 4.9799957}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2055866443
