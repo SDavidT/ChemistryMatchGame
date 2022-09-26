@@ -19,11 +19,13 @@ public class FadePanelController : MonoBehaviour
     // public Animator panelPause;
     public TextMeshProUGUI level;
     public Board board;
+    public PauseManager pauseManager;
     int prueba;
 
     void Start()
     {
         board = FindObjectOfType<Board>();
+        pauseManager = FindObjectOfType<PauseManager>();
         prueba = board.level + 1;
         level.text = "LEVEL" + " " + prueba;
     }
@@ -53,6 +55,8 @@ public class FadePanelController : MonoBehaviour
 
         Board board = FindObjectOfType<Board>();
         board.currentState = GameState.move;
+        pauseManager.PauseGame();
+
     }
     
 

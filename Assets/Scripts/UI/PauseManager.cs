@@ -19,6 +19,7 @@ public class PauseManager : MonoBehaviour
         //pausePanel.SetActive(false);
         //board = GameObject.FindWithTag("Board").GetComponent<Board>();
         board = FindObjectOfType<Board>();
+        paused = true;
         if (PlayerPrefs.HasKey("Sound"))
         {
             if (PlayerPrefs.GetInt("Sound") == 0)
