@@ -29,6 +29,7 @@ public class EndGameManager : MonoBehaviour
     public int currentCounter;
     private float timerSeconds;
     private Board board;
+    public bool nextLevel= false;
 
 
     
@@ -88,10 +89,10 @@ public class EndGameManager : MonoBehaviour
         board.currentState=GameState.win;
         currentCounter=0;
         counter.text=counter.text="" + currentCounter;
-
         FadePanelController fade= FindObjectOfType<FadePanelController>();
+        
         fade.GameOver();
-
+        nextLevel=true;
     }
 
     public void LoseGame(){

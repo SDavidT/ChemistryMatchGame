@@ -59,13 +59,22 @@ public class Board : MonoBehaviour
     private ScoreManager score;
 
     public GameState currentState = GameState.move;
+    public EndGameManager endGameManager;
 
     private void Awake()
     {
+        
+
+        bool nextLevel=FindObjectOfType<EndGameManager>().nextLevel;
+        Debug.Log(nextLevel);
+        if(nextLevel){
+            Debug.Log("SIGUIENTE NIVEL");
+        }
         if (PlayerPrefs.HasKey("Current Level"))
         {
 
             level = PlayerPrefs.GetInt("Current Level");
+            //level=level+1;
         }
 
         if (world != null)
