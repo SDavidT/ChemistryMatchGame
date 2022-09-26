@@ -20,14 +20,14 @@ public class FadePanelController : MonoBehaviour
     public TextMeshProUGUI level;
     public Board board;
     public PauseManager pauseManager;
-    int prueba;
+    int numberLevel2;
 
     void Start()
     {
         board = FindObjectOfType<Board>();
         pauseManager = FindObjectOfType<PauseManager>();
-        prueba = board.level + 1;
-        level.text = "LEVEL" + " " + prueba;
+        numberLevel2 = board.level + 1;
+        level.text = "LEVEL" + " " + numberLevel2;
     }
     public void OK()
     {

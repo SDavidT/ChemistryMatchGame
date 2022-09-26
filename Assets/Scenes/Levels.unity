@@ -2607,9 +2607,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 254603036}
-        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
-        m_MethodName: ExitGame
+      - m_Target: {fileID: 996045463}
+        m_TargetAssemblyTypeName: BackToSplash, Assembly-CSharp
+        m_MethodName: ReloadLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6244,6 +6244,7 @@ MonoBehaviour:
   gameInfoAnim: {fileID: 881594613}
   level: {fileID: 1515161568}
   board: {fileID: 0}
+  pauseManager: {fileID: 0}
 --- !u!1 &1787744388
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,15 +11,19 @@ public class ConfirmPanel : MonoBehaviour
     // Start is called before the first frame update
     public string levelToLoad;
     public int level;
+    public TextMeshProUGUI introlevel;
+   
+
     void Start()
     {
+        
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        introlevel.text = "LEVEL" + " " + level;
     }
 
     public void Cancel(){
