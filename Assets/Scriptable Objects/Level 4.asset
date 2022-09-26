@@ -10,21 +10,57 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 646aaf49ebd4eaf4c9c80ac8c7126283, type: 3}
-  m_Name: Level 2
+  m_Name: Level 4
   m_EditorClassIdentifier: 
-  width: 6
-  height: 6
-  boardLayout: []
+  width: 7
+  height: 4
+  boardLayout:
+  - x: 0
+    y: 1
+    tilekind: 1
+  - x: 0
+    y: 2
+    tilekind: 1
+  - x: 0
+    y: 3
+    tilekind: 1
+  - x: 1
+    y: 2
+    tilekind: 1
+  - x: 1
+    y: 3
+    tilekind: 1
+  - x: 2
+    y: 3
+    tilekind: 1
+  - x: 4
+    y: 3
+    tilekind: 1
+  - x: 5
+    y: 2
+    tilekind: 1
+  - x: 5
+    y: 3
+    tilekind: 1
+  - x: 6
+    y: 1
+    tilekind: 1
+  - x: 6
+    y: 2
+    tilekind: 1
+  - x: 6
+    y: 3
+    tilekind: 1
   dots:
   - {fileID: 7472228402230670678, guid: d52b20a0c7a8ea8438968a2b33313729, type: 3}
   - {fileID: 3412636521634929147, guid: 874ebeb654302c0438fdd3b7c69fb3fb, type: 3}
   - {fileID: 1104756194987214007, guid: c153aaf511f6fd0449f938ed90f42d8e, type: 3}
-  scoreGoals: 64000000bc020000dc050000
+  scoreGoals: 64000000e8030000d0070000
   endGameRequirements:
-    gameType: 0
-    counterValue: 50
+    gameType: 1
+    counterValue: 70
   levelGoals:
-  - numberNeeded: 4
+  - numberNeeded: 3
     numberCollected: 0
-    goalSprite: {fileID: 21300000, guid: 83ec456744d81e84ba01f97b0191a11b, type: 3}
-    matchValue: SO2
+    goalSprite: {fileID: 21300000, guid: 6c495fbc744db8c4289e97fb0f16905d, type: 3}
+    matchValue: H2SO3
