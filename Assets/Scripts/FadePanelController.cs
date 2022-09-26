@@ -54,6 +54,7 @@ public class FadePanelController : MonoBehaviour
         Board board = FindObjectOfType<Board>();
         board.currentState = GameState.move;
     }
+    
 
     ///PAUSE MENU
 

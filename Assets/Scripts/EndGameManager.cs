@@ -105,6 +105,8 @@ public class EndGameManager : MonoBehaviour
         fade.GameOver();
     }
 
+    
+
     // Update is called once per frame
     void Update()
     {

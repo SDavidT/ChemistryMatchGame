@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PauseManager : MonoBehaviour
 {
     public GameObject pausePanel;
-    public bool paused = false;
+    public bool paused = true;
     private Board board;
     public Animator panelPause;
     public Image soundButton;

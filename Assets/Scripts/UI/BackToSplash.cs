@@ -10,6 +10,10 @@ public class BackToSplash : MonoBehaviour
     public void OK(){
         SceneManager.LoadScene(sceneLoad);
     }
+
+    public void ReloadLevel(){
+        SceneManager.LoadScene("Levels");
+    }
     void Start()
     {
 
