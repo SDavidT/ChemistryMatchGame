@@ -60,21 +60,17 @@ public class Board : MonoBehaviour
 
     public GameState currentState = GameState.move;
     public EndGameManager endGameManager;
+    public int lengthLevels;
 
     private void Awake()
     {
         
 
-        bool nextLevel=FindObjectOfType<EndGameManager>().nextLevel;
-        Debug.Log(nextLevel);
-        if(nextLevel){
-            Debug.Log("SIGUIENTE NIVEL");
-        }
+        
         if (PlayerPrefs.HasKey("Current Level"))
         {
-
             level = PlayerPrefs.GetInt("Current Level");
-            //level=level+1;
+
         }
 
         if (world != null)
@@ -87,6 +83,10 @@ public class Board : MonoBehaviour
                 dots = world.levels[level].dots;
                 scoreGoals = world.levels[level].scoreGoals;
                 boardLayout = world.levels[level].boardLayout;
+
+                lengthLevels=world.levels.Length;
+
+                
 
             }
         }
@@ -115,7 +115,7 @@ public class Board : MonoBehaviour
             {
 
                 blankSpaces[boardLayout[i].x, boardLayout[i].y] = true;
-                //Debug.Log(boardLayout[i].x);
+                
 
             }
         }

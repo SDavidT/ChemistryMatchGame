@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+//using UnityEngine.SceneManagement;
 
 
 
@@ -29,7 +30,8 @@ public class EndGameManager : MonoBehaviour
     public int currentCounter;
     private float timerSeconds;
     private Board board;
-    public bool nextLevel= false;
+    //public bool nextLevel= false;
+    //public ConfirmPanel confirmPanel;
 
 
     
@@ -37,6 +39,7 @@ public class EndGameManager : MonoBehaviour
     void Start()
     {
         board=FindObjectOfType<Board>();
+        //confirmPanel=FindObjectOfType<ConfirmPanel>();
         SetGameType();
         SetupGame();
     }
@@ -92,7 +95,7 @@ public class EndGameManager : MonoBehaviour
         FadePanelController fade= FindObjectOfType<FadePanelController>();
         
         fade.GameOver();
-        nextLevel=true;
+        //nextLevel=true;
     }
 
     public void LoseGame(){
@@ -105,6 +108,8 @@ public class EndGameManager : MonoBehaviour
         FadePanelController fade= FindObjectOfType<FadePanelController>();
         fade.GameOver();
     }
+
+    
 
     
 

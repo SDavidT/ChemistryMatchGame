@@ -39,4 +39,10 @@ public class ConfirmPanel : MonoBehaviour
         SceneManager.LoadScene(levelToLoad);
 
     }
+
+    public void nextLevel(){
+
+        PlayerPrefs.SetInt("Current Level",level+1);
+        SceneManager.LoadScene(levelToLoad);
+    }
 }

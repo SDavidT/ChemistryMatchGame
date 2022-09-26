@@ -6,7 +6,18 @@ using UnityEngine.SceneManagement;
 public class BackToSplash : MonoBehaviour
 {
     public string sceneLoad;
+    private Board board;
+    
+    //public World world;
+    int nextLevel;
+    int lengthLevel;
     // Start is called before the first frame update
+    void Start()
+    {
+        //world=FindObjectOfType<World>();
+        board=FindObjectOfType<Board>();
+        
+    }
     public void OK(){
         SceneManager.LoadScene(sceneLoad);
     }
@@ -14,11 +25,21 @@ public class BackToSplash : MonoBehaviour
     public void ReloadLevel(){
         SceneManager.LoadScene("Levels");
     }
-    void Start()
-    {
 
+    public void NextLevel(){
+    
+        nextLevel=board.level+1;
+        lengthLevel=board.lengthLevels;
         
+        if(nextLevel<lengthLevel){
+
+            PlayerPrefs.SetInt("Current Level",nextLevel);
+            SceneManager.LoadScene("Levels");
+        }else{
+            SceneManager.LoadScene("SelectLevel");
+        }
     }
+    
 
     // Update is called once per frame
     void Update()
